@@ -1,0 +1,441 @@
+<style>
+.layui-form-item .color-screen{width:50px;margin-right:0px;margin:0 0 0px 0px;}@media screen and (max-width:450px){.wap-input .layui-input{width:100px;display:inline-block;margin:0;float:none;left:0;width:100px;float:left;}.layui-form-item .color-screen{left:0px;display:inline-block;margin-bottom:auto;}}
+</style>
+<div class="page-container">
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-filter">
+        <ul class="layui-tab-title">
+            <li class="layui-this">插件设置</li>
+            <li>播放器设置</li>
+            <li>播放器管理</li>
+            <li>弹幕管理</li>
+        </ul>
+        <div class="layui-tab-content">
+            <!--插件基础设置head--->
+            <div class="layui-tab-item layui-show layui-form layui-form-pane">
+              <blockquote class="layui-elem-quote">
+                  <p>若视频分类还未设置的，或者需要重置的，可以点此 <span class="layui-btn layui-btn-xs layui-bg-blue Initialize_type">初始化分类</span></p>
+              </blockquote>
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">自动分类</label>
+                <div class="layui-input-inline">
+                    <input type="checkbox" name="config[auto_type]" lay-skin="switch" lay-text="开|关" {if condition="$config.auto_type eq 'on' or $config.auto_type eq ''" }checked{/if}>
+                </div>
+                <div class="layui-form-mid layui-word-aux">开启后，点击任意资源站自动绑定分类，建议开启；如果没有绑定分类，将无法采集对应分类的数据</div>
+              </div>              
+              <div class="layui-form-item">
+                <label class="layui-form-label">添加播放器</label>
+                <div class="layui-input-inline">
+                    <input type="checkbox" name="config[auto_player]" lay-skin="switch" lay-text="开|关" {if condition="$config.auto_player eq 'on' or $config.auto_player eq ''" }checked{/if}>
+                </div>
+                <div class="layui-form-mid layui-word-aux">开启后，点击任意资源站自动添加播放器，建议开启；如果没有添加播放器将采集不到播放地址</div>
+              </div>
+              <div class="layui-form-item">
+                  <label class="layui-form-label">备选播放器</label>
+                  <div class="layui-input-inline" style="width:300px;">
+                      <textarea name="config[player]" class="layui-textarea" placeholder="填写解析接口或播放器路径">{$config.player}</textarea>
+                  </div>
+                  <div class="layui-form-mid layui-word-aux">填写解析接口地址，多个换行填写，可在“播放配置”中，下拉选择</div>
+              </div>
+
+              <div class="layui-form-item">
+                <label class="layui-form-label">接口开关</label>
+                <div class="layui-input-inline">
+                    <input type="checkbox" name="interface[status]" lay-skin="switch" lay-filter="task-status" lay-text="开|关" {if condition="$config['interface']['status'] eq '1'" }checked{/if}>
+                </div>
+                <div class="layui-form-mid layui-word-aux">同系统->站外入库配置->站外入库接口开关一致，开启后，插件定时采集任务才能采集数据发布入库</div>
+              </div>
+ 
+              <div id="cj-task" {if condition="$config['interface']['status'] eq '0'" }style="display: none;"{/if}>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">入库密码</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="interface[pass]" lay-verify="min16" value="{$config['interface']['pass']}" placeholder="发布数据入库的密码" class="layui-input ">
+                        </div>
+                    <div class="layui-form-mid layui-word-aux">同系统->站外入库配置->站外入库密码一致，需16位以上字符</div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">Token</label>
+                    <div class="layui-input-inline">
+                        <input type="text" name="config[token]" lay-verify="min16" value="{$config.token|default=mac_get_rndstr(16)}" placeholder="定时任务接口token" class="layui-input ">
+                        </div>
+                    <div class="layui-form-mid layui-word-aux"><span class="layui-btn layui-btn-xs layui-btn-normal create-token">生成token</span> 插件定时任务接口token</div>
+                </div>
+                <blockquote class="layui-elem-quote">
+                    <p>同系统->站外入库配置->站外入库分类转换规则一致</p>
+                    <p>本地程序的分类在前，资源站的分类在后，例如：动作片=动作</p>
+                </blockquote>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">视频分类</label>
+                    <div class="layui-input-inline" style="width:230px;">
+                        <textarea name="interface[vodtype]" class="layui-textarea" placeholder="视频分类绑定规则" rows="20" >{$config['interface']['vodtype']|mac_replace_text}</textarea>
+                    </div>
+                    <label class="layui-form-label">文章分类</label>
+                    <div class="layui-input-inline" style="width:230px;">
+                        <textarea name="interface[arttype]" class="layui-textarea" placeholder="文章分类绑定规则" rows="20" >{$config['interface']['arttype']|mac_replace_text}</textarea>
+                    </div>
+                </div>               
+              </div>
+              
+              
+              <div class="layui-form-item">
+                  <div class="layui-input-block">
+                      <button type="submit" class="layui-btn" lay-submit="" lay-filter="saveConfig">立 即 保 存</button>
+                  </div>
+              </div>
+            </div>
+            <!--插件基础设置end--->
+            <!--播放器设置head--->
+            <div class="layui-tab-item layui-form layui-form-pane">
+                <blockquote class="layui-elem-quote">
+                    <p>使用本插件『<b style="color:red;">[推荐]</b> ArtPlayer播放器』时，可在下方设置播放器参数</p>
+                    <p>以下设置仅适用于PC端，移动端浏览器会强制替换播放器，大部分设置在移动端浏览器内无效果</p>
+                    <p>支持外部调用，调用接口：<span id="jiekou"></span> <span class="layui-btn layui-btn-xs layui-bg-blue test-player">测试播放</span> </p>
+                </blockquote>
+                <fieldset class="layui-elem-field">
+                    <legend>播放器设置</legend>
+                    <div class="layui-field-box">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">LOGO</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="player[logo]" value="{$player.logo}" lay-affix="upload" lay-filter="upload-pic" placeholder="填写logo地址,可留空" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">留空则关闭logo功能；播放器右上角logo地址，logo尺寸建议150*40</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">LOGO位置</label>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="player[logo_position]" value="left" title="左上" {if condition="$player.logo_position eq 'left'" }checked{/if}>
+                                <input type="radio" name="player[logo_position]" value="right" title="右上" {if condition="$player.logo_position eq 'right' or $player.logo_position eq ''" }checked{/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">默认显示在右上角</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">Loading</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="player[loading]" value="{$player.loading}" placeholder="填写loading地址,可留空" lay-affix="upload" lay-filter="upload-pic" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">播放器加载中loading，可使用gif图片，不懂可保持默认设置。</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">播放倍速</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="player[rate]" value="{$player.rate|default='0.5,0.75,1,1.5,1.75,2,3'}" placeholder="0.5,1,1.5,2,3" class="layui-input "></div>
+                            <div class="layui-form-mid layui-word-aux">播放器控制栏倍速设置。英文逗号分隔，默认0.5,0.75,1,1.5,1.75,2,3</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">背景图片</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="player[poster]" value="{$player.poster}" placeholder="背景图片,可留空" lay-affix="upload" lay-filter="upload-pic" class="layui-input "></div>
+                            <div class="layui-form-mid layui-word-aux">播放器加载，未开始播放时的背景图片，可留空</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">画中画</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="player[pip]" lay-skin="switch" lay-text="开|关" {if condition="$player.pip eq 'on'" }checked{/if}></div>
+                            <div class="layui-form-mid layui-word-aux">是否在底部控制栏里显示 画中画 的开关按钮</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">窗口全屏</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="player[fullscreen]" lay-skin="switch" lay-text="开|关" {if condition="$player.fullscreen eq 'on'" }checked{/if}></div>
+                            <div class="layui-form-mid layui-word-aux">是否在底部控制栏里显示播放器 窗口全屏 按钮</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">网页全屏</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="player[fullscreenWeb]" lay-skin="switch" lay-text="开|关" {if condition="$player.fullscreenWeb eq 'on'" }checked{/if}></div>
+                            <div class="layui-form-mid layui-word-aux">是否在底部控制栏里显示播放器 网页全屏 按钮</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">播放器语言</label>
+                            <div class="layui-input-inline">
+                                <select name="player[lang]">
+                                    <option value="0" selected>默认</option>
+                                    <option value="zh-cn">中文</option>
+                                    <option value="en">英文</option>
+                                    <option value="zh-tw">繁体中文</option>
+                                </select>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">播放器前端页面语言设置</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自动下一集</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="player[next]" lay-skin="switch" lay-text="开|关" {if condition="$player.next eq 'on'" }checked{/if}></div>
+                            <div class="layui-form-mid layui-word-aux">如果有多集视频，是否开启自动下一集</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">进度条颜色</label>
+                            <div class="layui-input-inline wap-input">
+                                <input type="text" id="color1" name="player[color]" value="{$player.color|default='#c93bf4'}" placeholder="请选择颜色" class="layui-input"></div>
+                            <div class="layui-input-inline color-screen">
+                                <div id="color11"></div>
+                            </div>
+                            <div class="layui-input-inline layui-form-mid layui-word-aux">修改播放器控制栏进度条颜色</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">右键开关</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="player[menustate]" lay-skin="switch" lay-text="开|关" {if condition="$player.menustate eq 'on'" }checked{/if}></div>
+                            <div class="layui-form-mid layui-word-aux">是否开启播放器内右键菜单</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">播放器右键</label>
+                            <div class="layui-input-inline" style="width:300px;">
+                                <textarea name="player[contextmenu]" class="layui-textarea" placeholder="萌芽采集,https://www.mycj.pro/">{$player.contextmenu}</textarea>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">自定义播放器右键,说明：前面写名称，用英文逗号分隔，后面填写网址，需加http开头；多个换行填写
+                                <br>例子：萌芽采集,https://www.mycj.pro/</div>
+                        </div>
+                        <!--自定义json解析接口-->
+                        <blockquote class="layui-elem-quote">
+                            <p>如果你不懂什么是解析接口，要如何使用，可以保持默认不用管</p>
+                            <p>可通过第三方json解析接口，解析获得播放地址后通过本播放器播放</p>
+                            <p>json接口返回数据，可以有其他参数，但必须包含：code=200，url=播放地址</p>
+                            <p>例如：{"code": 200,"url": "http://127.0.0.1/示例/index.m3u8","msg":"解析成功"}</p>
+                        </blockquote>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">Json接口</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="player[json]" value="{$player.json}" placeholder="第三方json解析接口" class="layui-input "></div>
+                            <div class="layui-form-mid layui-word-aux">可自定义第三方json解析接口</div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">指定标识</label>
+                            <div class="layui-input-inline">
+                                <input type="text" name="player[json_from]" value="{$player.json_from|default='.qq.com,.qiyi.com,.youku.com,.mgtv.com,.sohu.com,.le.com'}" placeholder="请填写来源域名标识" class="layui-input ">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">指定播放域名的地址，或特定的标识，将通过自定义json接口解析，多个用英文逗号分隔</div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset class="layui-elem-field">
+                  <legend>弹幕设置<input type="checkbox" name="player[danmu][status]" lay-skin="switch" lay-text="开|关" lay-filter="dm-status" {if condition="$player.danmu.status eq 'on'" }checked{/if}></legend>
+                  <div class="layui-field-box player-dm-setting" {if condition="$player.danmu.status neq 'on'" }style="display: none;"{/if}>
+ 
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">持续时间</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="player[danmu][speed]" value="{$player.danmu.speed|default='10'}"  min="1" max="10" class="layui-input" placeholder="弹幕显示的持续时间">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"> 弹幕持续显示的时间，单位秒，范围在[1 ~ 10]</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">弹幕大小</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="player[danmu][size]" value="{$player.danmu.size|default='20'}" min="20" class="layui-input" placeholder="弹幕文字大小">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux"> 设置弹幕文字显示的大小，支持数字和百分比 </div>
+                    </div>
+                    
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"> 弹幕颜色 </label>
+                        <div class="layui-input-inline wap-input">
+                            <input type="text" id="color2" name="player[danmu][color]" value="{$player.danmu.color|default='#ffffff'}" placeholder="请选择颜色" class="layui-input">
+                        </div>
+                        <div class="layui-input-inline color-screen">
+                            <div id="color22"></div>
+                        </div>
+                        <div class="layui-input-inline layui-form-mid layui-word-aux">发送弹幕时的默认显示颜色</div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label"> 提示语</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="player[danmu][tips]" value="{$player.danmu.tips|default='请勿相信视频中的任何广告'}" class="layui-input" placeholder="单位/秒">
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">加载弹幕前的提示语</div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">发送间隔</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="player[danmu][sendtime]" value="{$player.danmu.sendtime|default='3'}" min="1" size="30" class="layui-input" placeholder="单位/秒"></div>
+                        <div class="layui-form-mid layui-word-aux">（秒）弹幕发送间隔时间，防止恶意发布弹幕，范围[1 ~ 60]</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">弹幕长度</label>
+                        <div class="layui-input-inline">
+                            <input type="number" name="player[danmu][leng]" value="{$player.danmu.leng|default='100'}" min="1" size="200" class="layui-input" placeholder="弹幕字符最大长度"></div>
+                        <div class="layui-form-mid layui-word-aux">弹幕字符最大长度，防止发送超长文字的弹幕，范围[1 ~ 200]</div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">禁用关键词</label>
+                        <div class="layui-input-inline" style="width:300px;">
+                            <textarea name="player[danmu][pbgjz]" class="layui-textarea" placeholder="输入关键字" >{$player.danmu.pbgjz|default='草,操,妈,逼,滚,网址,AV,黄片,网站,支付,企,关注,wx,微信,qq,QQ'}</textarea>
+                        </div>
+                        <div class="layui-form-mid layui-word-aux">发送弹幕禁用的关键词，输入关键字以","隔开</div>
+                    </div>
+
+                  </div>
+                </fieldset>      
+                <fieldset class="layui-elem-field">
+                    <legend>广告设置<input type="checkbox" name="player[ads][status]" lay-skin="switch" lay-text="开|关" lay-filter="ads-status" {if condition="$player.ads.status eq 'on'" }checked{/if}></legend>
+                    <div class="layui-field-box player-ads-setting"  {if condition="$player.ads.status neq 'on'" }style="display: none;"{/if}>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">前置广告</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="player[ads][pre][state]" lay-skin="switch" lay-text="开|关" {if condition="$player.ads.pre.state eq 'on'" }checked{/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">播放视频前的广告，移动端有部分浏览器支持，大部分不支持显示。</div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">显示时间</label>
+                            <div class="layui-input-inline">
+                                <input type="number" min="1" name="player[ads][pre][time]" value="{$player.ads.pre.time|default='10'}" class="layui-input" placeholder="单位/秒">
+                            </div>
+                            <label class="layui-form-label">关闭时间</label>
+                            <div class="layui-input-inline">
+                                <input type="number" min="1" name="player[ads][pre][close_time]" value="{$player.ads.pre.close_time|default='0'}" class="layui-input" placeholder="单位/秒">
+                            </div>
+                        </div>
+                        <blockquote class="layui-elem-quote">
+                            <p>显示时间：广告可以显示多少秒；关闭时间：广告多少秒后可以点击关闭，如果关闭时间为0,则随时可以关闭广告</p>
+                            <p>前置广告内容支持视频或图片，视频格式支持mp4，图片格式支持jpg、png、gif</p>
+                        </blockquote>
+                        <!--前置广告列表-->
+                        <script> var pre_len = {$player.ads.pre.data|count}; </script>
+                        <div id="pre_list">
+                        {volist name="$player.ads.pre.data" id="vo" key="k"}
+                            <div class="layui-form-item tr" data-i="{$k}">
+                                <label class="layui-form-label">广告内容{$k}</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="player[ads][pre][data][url][]" value="{$vo['url']}" class="layui-input" placeholder="广告内容链接地址">
+                                </div>
+                                <label class="layui-form-label">跳转链接{$k}</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="player[ads][pre][data][link][]" value="{$vo['link']}" class="layui-input" placeholder="点击跳转链接地址">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux"><a href="javascript:;" class="j-pre-remove" style="color:blue;">删除</a></div>
+                            </div>
+                        {/volist}
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="margin-left: 110px;">    
+                                <button class="layui-btn layui-btn-xs j-pre-add" type="button">添加一组前置广告</button>
+                            </div>
+                        </div>
+
+                        <hr class="layui-border-green">   
+                        <blockquote class="layui-elem-quote">
+                            <p>暂停内容只支持图片，图片格式支持jpg、png、gif; 尺寸不限，但是不建议太大。</p>
+                        </blockquote> 
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">暂停广告</label>
+                            <div class="layui-input-inline">
+                                <input type="checkbox" name="player[ads][pause][state]" lay-skin="switch" lay-text="开|关" {if condition="$player.ads.pause.state eq 'on'" }checked{/if}>
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">暂停播放时的广告，多组广告随机显示，移动端浏览器不支持显示</div>
+                        </div>
+                        <!--暂停广告列表-->
+                        <script> var arr_len = {$player.ads.pause.data|count}; </script>
+                        <div id="pause_list">
+                        {volist name="$player.ads.pause.data" id="vo" key="k"}
+                            <div class="layui-form-item tr" data-i="{$k}">
+                                <label class="layui-form-label">图片链接{$k}</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="player[ads][pause][data][pic][]" value="{$vo['pic']}" lay-affix="upload" lay-filter="upload-pic" class="layui-input" placeholder="暂停广告图片地址">
+                                </div>
+                                <label class="layui-form-label">跳转链接{$k}</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" name="player[ads][pause][data][link][]" value="{$vo['link']}" class="layui-input" placeholder="点击跳转链接地址">
+                                </div>
+                                <div class="layui-form-mid layui-word-aux"><a href="javascript:;" class="j-pause-remove" style="color:blue;">删除</a></div>
+                            </div>
+                        {/volist}
+                        </div>
+                        <div class="layui-form-item">
+                            <div style="margin-left: 110px;">    
+                                <button class="layui-btn layui-btn-xs j-pause-add" type="button">添加一组暂停广告</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="savePlayer">立 即 保 存</button>
+                    </div>
+                </div>
+            </div>
+            <!--播放器设置end--->
+            <!--播放器批量管理设置head--->
+            <div class="layui-tab-item">
+              <blockquote class="layui-elem-quote">
+                <p>请结合自身需求做选择，网页端播放推荐将“解析状态”设置为禁用</p>
+                <p>解析状态 设为“启用”，会调用“独立解析接口”里面的解析地址</p>
+                <p>解析状态 设为“禁用”，会调用“播放器代码”里面的播放配置</p>
+                
+              </blockquote>  
+              <script type="text/html" id="toolbarDemo">
+                  <div class="layui-row layui-col-space6">
+                    <div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:80px;">
+                        <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="delete"> 批量删除 </button>
+                    </div>
+                    <div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:80px;">
+                        <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="deleteAll"> 清空所有 </button>
+                    </div>
+                    <div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:80px;">
+                        <button class="layui-btn layui-btn-sm player-status"> 
+                            <span>更多操作</span>
+                            <i class="layui-icon layui-icon-down layui-font-12"></i>
+                          </button>
+                    </div>
+                  </div>
+              </script>
+              <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+              <script type="text/html" id="currentTableBar">
+                  <a class="layui-btn layui-btn-xs layui-bg-blue" data-href="{:url('vodplayer/info')}" lay-event="edit">编辑</a>
+                  <a class="layui-btn layui-btn-xs layui-bg-red" lay-event="delete">删除</a>
+              </script>
+            </div>
+            <!--播放器批量管理设置end--->
+            <!--弹幕管理head--->
+            <div class="layui-tab-item">
+                <!--搜索条件-->
+                <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                        <div class="layui-row layui-col-space6">
+                            <div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:160px;">
+                                <select name="search-key" lay-verify="required">
+                                    <option value="">请选择搜索类型</option>
+                                    <option value="id">弹幕ID</option>
+                                    <option value="vod_name">视频标题</option>
+                                    <option value="referer">来源地址</option>
+                                    <option value="text">弹幕内容</option>
+                                </select>
+                            </div>
+                            <div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:220px;">
+                                <div class="layui-input-wrap">
+                                    <input type="text" name="content" lay-verify="required" placeholder="请输入搜索内容" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:100px;">
+                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="search-danmu"><i class="layui-icon"></i> 搜 索</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/html" id="danmuDemo">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm layui-bg-red" lay-event="delete2"> 批量删除 </button>
+                    </div>
+                </script>
+                <table class="layui-hide" id="danmuTableId" lay-filter="danmuTableFilter"></table>
+                <script type="text/html" id="danmuTableBar">
+                    <a class="layui-btn layui-btn-xs layui-bg-red" lay-event="delete">删除</a>
+                </script>
+            </div>
+            <!--弹幕管理end--->            
+          </div>
+    </div>
+  </div>
+  <script>
+    var del_url = "{:url('mycj/delplayer')}";
+    var data_url = "{:url('mycj/allplayer')}";
+    var save_url = "{:url('mycj/set')}";
+    var danmu_url = "{:url('mycj/danmu_data')}";
+    var upload_url = "{:url('upload/upload',['flag'=>'files'])}";
+  </script>
+  <script type="text/javascript" src="__STATIC__/mycj/js/config.js?v={$cjinfo.version}"></script>

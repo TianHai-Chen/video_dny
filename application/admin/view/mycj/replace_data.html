@@ -1,0 +1,63 @@
+<div class="page-container">
+    <div class="layui-tab layui-tab-brief" lay-filter="tab-filter">
+        <ul class="layui-tab-title">
+            <li class="layui-this">数据替换</li>
+            <li>替换记录</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+              <blockquote class="layui-elem-quote">
+                <p>使用MySql数据库批量替换操作，请根据自身需求选择，例如你只采集了“A资源站”，那么就只需要找“A资源站”的检测替换即可</p>
+                <p>同一个资源站，同一个旧域名，替换一次后，新采集的数据就无需再次替换</p>
+              </blockquote>
+              <fieldset class="layui-elem-field layui-field-title">
+                <legend>SQL替换</legend>
+                <div class="layui-field-box" style="margin-top: 15px;">
+                  <form class="layui-form layui-form-pane" action="">
+                    <div class="layui-form-item">
+                      <label class="layui-form-label">替换字段</label>
+                      <div class="layui-input-inline">
+                        <select name="field">
+                          <option value="vod_play_url" selected>播放地址[vod_play_url]</option>
+                          <option value="vod_pic">图片地址[vod_pic]</option>
+                          <option value="vod_pic_thumb">缩略图地址[vod_pic_thumb]</option>
+                          <option value="vod_pic_slide">海报图地址[vod_pic_slide]</option>
+                          <option value="vod_name">视频名称[vod_name]</option>
+                        </select>
+                      </div>
+                      <div class="layui-input-inline">
+                        <input type="text" name="old" lay-verify="required" placeholder="请输入要替换的内容" autocomplete="off" class="layui-input">
+                      </div>
+                      <div class="layui-input-inline">
+                        <input type="text" name="new" lay-verify="required" placeholder="请输入替换后的内容" autocomplete="off" class="layui-input">
+                      </div>
+                      <div class="layui-input-inline">
+                        <button type="submit" class="layui-btn" lay-submit="" lay-filter="execute">确认执行</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </fieldset>
+              <blockquote class="layui-elem-quote">
+                下面是收集的资源站域名替换信息，若有更新不及时的，请及时联系我们更新
+              </blockquote>
+              <table class="layui-hide" id="dataTableId" lay-filter="dataTableFilter"></table>
+              <script type="text/html" id="dataTableBar">
+                <span class="layui-btn layui-btn-xs" lay-event="executesql">执行替换</span>
+              </script>
+            </div>
+            <div class="layui-tab-item">
+              <table class="layui-hide" id="LogTableId" lay-filter="LogTableFilter"></table>
+              <script type="text/html" id="LogTableBar">
+                <span class="layui-btn layui-btn-xs layui-bg-red" lay-event="delete">删除</span>
+              </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+var replace_list = "{:url('mycj/replace_list')}";
+var replace_sql = "{:url('mycj/replace_data')}";
+var replace_log = "{:url('mycj/replace_log')}";
+</script>
+<script type="text/javascript" src="__STATIC__/mycj/js/replace_data.js?v={$cjinfo.version}"></script>

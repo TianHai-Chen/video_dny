@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>搜索{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name}-国内领先的在线视频网站·免VIP在线观看无广告高清视频</title>
+<meta name="keywords" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name},免费在线电影,{$maccms.site_name},视频网站,免VIP,免广告,高清,高清视频,高清视频观看,VIP会员,在线观看,电影,电视剧,综艺,最新电影,最新电视剧" />
+<meta name="description" content="{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}-{$maccms.site_name},{$maccms.site_name}-国内领先的在线视频网站·平台用户可享受免VIP在线观看无广告高清视频,我们致力打造最优秀的最新影视,最新电视剧,最新综艺节目在线观看服务平台" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="box position t10" style=" height:30px">
+<a href="{$maccms.path}"><i class="iconfont">&#xe64d;</i>首页</a><i class="iconfont">&#xe650;</i>搜索关键词<font color="#ff6a1f;">{$param.wd}{$param.actor}{$param.director}{$param.area}{$param.lang}{$param.year}{$param.class}</font>
+</div>
+<div class="vod" style="margin-top:10px;">
+<div class="boxx">{maccms:vod num="5" paging="yes" pageurl="vod/search" order="desc" by="time"}{/maccms:vod}
+{if condition="$__PAGING__.record_total eq 0"}{else /}
+	<div class="search-left back-tabs fn-left t10">
+		<ul>
+			<h3>搜索分类</h3>
+			<li class="btn cur"><i class="iconfont">&#xe606;</i>视频</li>
+			<li class="btn " href="javascript:;" data="sid-3"><i class="iconfont">&#xe630;</i>明星</li>
+			<li class="btn " href="javascript:;" data="sid-2"><i class="iconfont">&#xe610;</i>新闻</li>
+		</ul>
+	</div>{/if}
+	<div id="short-page">
+		<div class="uipages toppage">
+			<a {if condition="$__PAGING__.page_current==1"}class="no"{else /}href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_prev}"{/if}><i class="iconfont">&#xe621;</i></a>
+			<a {if condition="$__PAGING__.page_current==$__PAGING__.page_total"}class="no"{else /}href="{$__PAGING__.page_url|mac_url_page=$__PAGING__.page_next}"{/if}><i class="iconfont">&#xe634;</i></a>
+		</div>
+		<div class="list_toppage">
+			全部共<span class="count">{$__PAGING__.record_total}</span>个相关视频<span><span class="page">{$__PAGING__.page_current}</span>/{$__PAGING__.page_total}</span>
+		</div>
+	</div>
+	<div class="search-right w920 fn-right">
+{maccms:vod num="5" paging="yes" pageurl="vod/search" order="desc" by="time"}
+		<div class="player-info back-tab t15">
+			<div class="player-info-img">
+				<a href="{:mac_url_vod_detail($vo)}" target="_blank"><img class="loading" src="{$vo.vod_pic|mac_url_img}" align="{$vo.vod_name}" title="{$vo.vod_name}"/></a>
+			</div>
+			<div class="player-info-x">
+				<div class="player-info-l">
+					<h3>{$vo.vod_name}<em>{include file="public/serial1"}</em></h3>
+					<p class="mcid"><em>标签：</em>{$vo.vod_class|mac_url_create='class'}</p>
+					<p><em>导演：</em>{$vo.vod_director|mac_default='未知'}</p>
+					<p><em>主演：</em>{$vo.vod_actor|mac_default='未知'}</p>
+					<div class="player-info-jj"><em>介绍：</em>{$vo.vod_content|mac_filter_html}</div>
+				</div>
+{notempty name="$vo.vod_actor"}
+				<div class="w260 fn-right t15 mr10">
+					<div class="star-tabs">
+						<ul class="star-r-list">{maccms:actor num="6" order="desc" by="time" id="vo1" key="key1"}
+							<li><a href="{$vo1|mac_url_actor_detail}" target="_blank" class="aPic"><img src="{$vo1.actor_pic|mac_url_img}" align="{$vo1.actor_name}" title="{$vo1.actor_name}" width="68" height="92"></a>
+							<h3><a href="{$vo1|mac_url_actor_detail}" target="_blank">{$vo1.actor_name}</a></h3>
+							</li>{/maccms:actor}
+						</ul>
+					</div>
+				</div>
+{/notempty}
+			</div>
+		</div>
+{/maccms:vod}
+{if condition="$__PAGING__.record_total eq 0"}<ul class="up-list list-img list_module_list"><div class="kong">抱歉，没有找到相关内容！</div></ul>{/if}
+	</div>
+</div>
+{if condition="$__PAGING__.record_total gt 6"}{include file="public/paging"}{/if}
+</div>
+{include file="public/foot"}
+</body>
+</html>

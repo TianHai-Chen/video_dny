@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>明星_娱乐明星_明星大全 - {$maccms.site_name}</title>
+<meta name="keywords" content="明星,娱乐明星,电影明星,电视剧明星,明星大全">
+<meta name="description" content="{$maccms.site_name}为您提供各国男女明星的详细资料、近况已经最新电影，电视剧在线观看。">
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="box" style="margin-top:5px;">
+<div class="star_index_hot">
+<ul class="picList">
+
+{maccms:actor num="7" order="desc" by="time"}
+<li class="li{$key}">
+<div class="pic">
+<img src="{$vo.actor_pic|mac_url_img}" align="{$vo.actor_name}" title="{$vo.actor_name}">
+<div class="txt">
+<span class="sTit">{$vo.actor_name}</span>
+<p class="pTxt">{$vo.actor_remarks|mac_default='演员'}</p>
+</div>
+<a class="aPlayBtn" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}" target="_blank"></a>
+</div>
+</li>
+{/maccms:actor}
+</ul>
+</div>
+</div>
+<div class="box t10">
+<div class="title ont"><h2>内地热星</h2>
+<a href="#" target="_blank" title="内地热星" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+</div>
+</div>
+<div class="back-tabs boxn starlist" id="new">
+<ul class="tab-qh"></ul>
+<a href="javascript:;" class="switchBtn left disabled prev"></a>
+<a href="javascript:;" class="switchBtn right disabled next"></a>
+<ul class="up-list list-img star" id="xp">
+{maccms:actor num="15" area="大陆,内地" order="desc" by="time"}
+<li><a href="{$vo|mac_url_actor_detail}" target="_blank"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.actor_pic|mac_url_img}" alt="{$vo.actor_name}" title="{$vo.actor_name}">
+<div class="info"><h3>{$vo.actor_name}</h3>
+<p><em>别名：</em>{$vo.actor_alias|mac_default='未知'}</p>
+<p><em>职业：</em>{$vo.actor_remarks|mac_default='演员'}</p><p><em>代表作：</em>{$vo.actor_works}</p><p><em>出生日期：</em>{$vo.actor_birthday}</p></div></a><div class="txt"><h3><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a></h3><span class="des">{$vo.actor_area}{$vo.actor_sex}{$vo.actor_remarks|mac_default='演员'}</span></div></li>
+{/maccms:actor}
+</ul>
+</div>
+<script type="text/javascript">jQuery("#new").slide({titCell:".tab-qh",mainCell:".up-list",autoPage:true,effect:"left",autoPlay:false,scroll:5,vis:5,trigger:"click"});</script>
+<div class="box t10">
+<div class="title ont"><h2>港台热星</h2>
+<a href="#" target="_blank" title="港台热星" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+</div>
+</div>
+<div class="back-tabs boxn starlist" id="tongbu">
+<ul class="tab-qh"></ul>
+<a href="javascript:;" class="switchBtn left disabled prev"></a>
+<a href="javascript:;" class="switchBtn right disabled next"></a>
+<ul class="up-list list-img star">
+{maccms:actor num="15" area="香港,台湾,澳门" order="desc" by="time"}
+<li><a href="{$vo|mac_url_actor_detail}" target="_blank"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.actor_pic|mac_url_img}" alt="{$vo.actor_name}" title="{$vo.actor_name}">
+<div class="info"><h3>{$vo.actor_name}</h3>
+<p><em>别名：</em>{$vo.actor_alias|mac_default='未知'}</p>
+<p><em>职业：</em>{$vo.actor_remarks|mac_default='演员'}</p><p><em>代表作：</em>{$vo.actor_works}</p><p><em>出生日期：</em>{$vo.actor_birthday}</p></div></a><div class="txt"><h3><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a></h3><span class="des">{$vo.actor_area}{$vo.actor_sex}{$vo.actor_remarks|mac_default='演员'}</span></div></li>
+{/maccms:actor}
+</ul>
+</div>
+<script type="text/javascript">jQuery("#tongbu").slide({titCell:".tab-qh",mainCell:".up-list",autoPage:true,effect:"left",autoPlay:false,scroll:5,vis:5,trigger:"click"});</script>
+<div class="box t10">
+<div class="title ont"><h2>韩日热星</h2>
+<a href="#" target="_blank" title="韩日热星" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+</div>
+</div>
+<div class="back-tabs boxn starlist" id="tab1">
+<ul class="tab-qh"></ul>
+<a href="javascript:;" class="switchBtn left disabled prev"></a>
+<a href="javascript:;" class="switchBtn right disabled next"></a>
+<ul class="up-list list-img star">
+{maccms:actor num="15" area="韩国,日本,亚洲" order="desc" by="time"}
+<li><a href="{$vo|mac_url_actor_detail}" target="_blank"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.actor_pic|mac_url_img}" alt="{$vo.actor_name}" title="{$vo.actor_name}">
+<div class="info"><h3>{$vo.actor_name}</h3>
+<p><em>别名：</em>{$vo.actor_alias|mac_default='未知'}</p>
+<p><em>职业：</em>{$vo.actor_remarks|mac_default='演员'}</p><p><em>代表作：</em>{$vo.actor_works}</p><p><em>出生日期：</em>{$vo.actor_birthday}</p></div></a><div class="txt"><h3><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a></h3><span class="des">{$vo.actor_area}{$vo.actor_sex}{$vo.actor_remarks|mac_default='演员'}</span></div></li>
+{/maccms:actor}
+</ul>
+</div>
+<script type="text/javascript">jQuery("#tab1").slide({titCell:".tab-qh",mainCell:".up-list",autoPage:true,effect:"left",autoPlay:false,scroll:5,vis:5,trigger:"click"});</script>
+<div class="box t10">
+<div class="title ont"><h2>欧美热星</h2>
+<a href="#" target="_blank" title="欧美热星" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+</div>
+</div>
+<div class="back-tabs boxn starlist" id="tab2">
+<ul class="tab-qh"></ul>
+<a href="javascript:;" class="switchBtn left disabled prev"></a>
+<a href="javascript:;" class="switchBtn right disabled next"></a>
+<ul class="up-list list-img star">
+{maccms:actor num="15" area="美国,欧美,欧洲,英国" order="desc" by="time"}
+<li><a href="{$vo|mac_url_actor_detail}" target="_blank"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.actor_pic|mac_url_img}" alt="{$vo.actor_name}" title="{$vo.actor_name}">
+<div class="info"><h3>{$vo.actor_name}</h3>
+<p><em>别名：</em>{$vo.actor_alias|mac_default='未知'}</p>
+<p><em>职业：</em>{$vo.actor_remarks|mac_default='演员'}</p><p><em>代表作：</em>{$vo.actor_works}</p><p><em>出生日期：</em>{$vo.actor_birthday}</p></div></a><div class="txt"><h3><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a></h3><span class="des">{$vo.actor_area}{$vo.actor_sex}{$vo.actor_remarks|mac_default='演员'}</span></div></li>
+{/maccms:actor}
+</ul>
+</div>
+<script type="text/javascript">jQuery("#tab2").slide({titCell:".tab-qh",mainCell:".up-list",autoPage:true,effect:"left",autoPlay:false,scroll:5,vis:5,trigger:"click"});</script>
+﻿{include file="public/foot"}
+</body>
+</html>

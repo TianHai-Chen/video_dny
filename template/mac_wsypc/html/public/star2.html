@@ -1,0 +1,25 @@
+<div class="w260 fn-right">
+	<div class="ui-boxb" id="detail-box">
+		<div class="rating-box" id="rating-main" style="display: block;">
+			<div class="rating-total fn-clear">
+				<label class="rating-total-item" id="total" style="width: {$obj.vod_score*10|ceil}%;">&nbsp;</label>
+					<div class="pingfen-total">
+						<strong id="pingfen">{$obj.vod_score}</strong><em id="pingfen2">{$obj.vod_score}</em>
+					</div>
+				</div>
+				<div class="rating-panle">
+					<div class="rating-bar">
+						<div class="rating-bar-item" id="fenshu" style="width: {$obj.vod_score*10|ceil}%;">&nbsp;</div>
+					</div>
+					<ul class="rating-show" style="display: none;">
+                <li><span title="力荐" class="starstop star5">力荐</span><div class="power"><div class="power-item" id="pam"></div></div><em id="pa">人</em></li>
+                <li><span title="推荐" class="starstop star4">推荐</span><div class="power"><div class="power-item" id="pbm"></div></div><em id="pb">人</em></li>
+                <li><span title="还行" class="starstop star3">还行</span><div class="power"><div class="power-item" id="pcm"></div></div><em id="pc">人</em></li>
+                <li><span title="较差" class="starstop star2">较差</span><div class="power"><div class="power-item" id="pdm"></div></div><em id="pd">人</em></li>
+                <li><span title="很差" class="starstop star1">很差</span><div class="power"><div class="power-item" id="pem"></div></div><em id="pe">人</em></li>
+					</ul>
+				</div>
+		</div>
+<div class="rating-box" id="rating-kong" style="display: none;"><div class="rating-kong-item"><span class="loading">评分加载中...</span></div></div>
+	</div>
+</div>

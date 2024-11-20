@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$obj.actor_name}个人资料_{$obj.actor_name}演过的电视剧_{$obj.actor_name}电影全集-{$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.actor_name}个人资料,{$obj.actor_name}演过的电视剧,{$obj.actor_name}电影全集,{$obj.actor_name}最新电影,{$obj.actor_name}最新电视剧" />
+<meta name="description" content="{$maccms.site_name}演示站为你收集了{$obj.actor_name}个人资料包括了{$obj.actor_name}最新演过的电视剧,{$obj.actor_name}电影全集,以及{$obj.actor_name}图片剧照最近动态等信息希望你能喜欢。" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="starbox">
+<div class="starboxinfo box starnav">
+<div class="vod-nav">
+<ul><a class="btn cur" title="{$obj.actor_name}资料" target="_self">个人资料</a></ul>
+<div class="position fn-left mb10 ml15 starblack"><a href="{$obj|mac_url_actor_index}">明星列表</a><i class="iconfont">&#xe650;</i><a href="{$obj|mac_url_actor_detail}" title="{$obj.actor_name}介绍">{$obj.actor_name}资料</a> </div></div>
+<div class="w920 fn-left">
+<div class="star-nei">
+<div class="star-img"><img class="loading" src="{$obj.actor_pic|mac_url_img}" alt="{$obj.actor_name}" />
+<div class="vodtool"><div class="vod-sect user-bt" style="width:100px;">
+<a rel="nofollow" class="sect-btn" href="javascript:void(0);" onclick="MAC.Fav(location.href,document.name);"><i class="iconfont">&#xe626;</i>收藏</a></div>
+<div class="vod-em user-bt"><i class="iconfont">&#xe62d;</i>二维码</div></div>
+<div class="qr"><div class="qr-code"><div class="qr-code-box"><div id="ncode"></div></div><p>手机扫一扫轻松观看</p><p><em>{$obj.actor_name}</em></p></div></div>
+<div class="vodtoolbj"></div>
+</div>
+<div class="star-nei-info">
+<h1>{$obj.actor_name}</h1>
+<div class="bdsharebuttonbox" data-tag="share_1">
+<p class="els-ico" id="hony-share-services">
+<i class="iconfont"><a rel="nofollow" class="s-sina" data-cmd="tsina">&#xe62e;</a></i>
+<i class="iconfont"><a rel="nofollow" class="s-qzone" data-cmd="qzone">&#xe62b;</a></i>
+<i class="iconfont"><a rel="nofollow" class="s-weixin" data-cmd="weixin">&#xe627;</a></i>
+<i class="iconfont"><a rel="nofollow" class="s-qq" data-cmd="sqq">&#xe62a;</a></i>
+<i class="iconfont"><a rel="nofollow" class="bds_more" data-cmd="more">&#xe631;</a></i>
+</p>
+</div>
+<script>window._bd_share_config = {common : {bdText : '{$obj.actor_name}',bdDesc : '{$obj.actor_content|mac_filter_html}',bdUrl : 'http://{$maccms.site_url}{:mac_url_actor_detail($obj)}', bdPic : '{$obj.actor_pic|mac_url_img}'},share : [{"bdSize" :4}]} 
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+
+<ul class="clear">
+<li><span class="sTit">中文名:</span>{$obj.actor_name}</li>
+<li><span class="sTit">别名:</span>{$obj.actor_alias|mac_default='未知'}</li>
+<li><span class="sTit">外文名:</span>不详</li>
+<li><span class="sTit">身高:</span>{$obj.actor_height}</li>
+<li><span class="sTit">体重:</span>{$obj.actor_weight}</li>
+<li><span class="sTit">国籍:</span>{$obj.actor_area}</li>
+<li><span class="sTit">星座:</span>{$obj.actor_starsign}</li>
+<li><span class="sTit">血型:</span>{$obj.actor_blood}</li>
+<li><span class="sTit">出生日期:</span>{$obj.actor_birthday}</li>
+<li><span class="sTit">出生地:</span>{$obj.actor_area}</li>
+<li><span class="sTit">职业:</span>{$obj.actor_remarks|mac_default='演员'}</li>
+<li class="w50"><span class="sTit">毕业院校:</span>{$obj.actor_school}</li>
+<li class="w50"><span class="sTit">经纪公司:</span>EEG</li>
+</ul>
+<div class="brief"><em>介绍：</em>{$obj.actor_content|mac_filter_html}</div>
+</div>
+</div>
+</div>
+</div>
+<div class="vodbot"></div>
+{maccms:type ids="1,2" order="asc" by="sort"}
+<div class="box starrtitle t15"><h2>{$obj.actor_name}主演{$vo.type_name}</h2><a href="{:mac_url_type($vo,['actor'=>$obj.actor_name],'show')}" target="_blank" class="more" title="{$obj.actor_name}主演{$vo.type_name}">更多<i class="iconfont">&#xe61f;</i></a></div>
+<div class="back-tabs boxn starlist">
+<ul class="up-list list-img star">
+{maccms:vod num="5" type="'.$vo['type_id'].'" actor="'.$obj['actor_name'].'" order="desc" by="time"}
+<li><a href="{$vo|mac_url_vod_detail}" target="_blank"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name}" title="{$vo.vod_name}"><label class="qx">{include file="public/serial1"}</label><div class="info"><i class="iconfont">&#xe622;</i></div>
+</a><div class="txt"><h3><a href="{$vo|mac_url_vod_detail}" target="_blank"> {$vo.vod_name}</a></h3><span class="des">{$vo.vod_actor}</span></div>
+</li>
+{/maccms:vod}
+</ul>
+</div>
+{/maccms:type}
+{include file="public/foot"}
+</body>
+</html>

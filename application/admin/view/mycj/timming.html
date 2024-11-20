@@ -1,0 +1,23 @@
+<div class="page-container">
+    <div class="layui-tab-item layui-show layui-form layui-form-pane">
+        <blockquote class="layui-elem-quote">
+            <p>插件定时任务和程序定时任务区别如下：</p>
+            <p>插件定时任务：需要通过Python脚本运行，多线程多任务采集，采集速度快，不影响网页访问，点此查看教程设置</p>
+            <p>程序定时任务：通过定时监控访问任务链接采集数据，php单线程采集，可能会导致网站加载卡、无反应、采集不完整等情况</p>
+        </blockquote>
+        <script type="text/html" id="timmingDemo">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm layui-btn-primary timming_type">
+                    <span>{{= d.timming_type ? '插件' : '程序' }}定时任务</span>
+                    <i class="layui-icon layui-icon-down layui-font-12"></i>
+                </button>
+            </div>
+        </script>
+        <table class="layui-hide" id="timmingTableId" lay-filter="timmingTableFilter"></table>
+        <script type="text/html" id="timmingTableBar">
+            <a class="layui-btn layui-btn-xs layui-bg-red" lay-event="delete">删除</a>
+        </script>
+    </div>
+</div>
+<script>var timming_url = "{:url('mycj/timming')}";</script>    
+<script type="text/javascript" src="__STATIC__/mycj/js/timming.js?v={$cjinfo.version}"></script>

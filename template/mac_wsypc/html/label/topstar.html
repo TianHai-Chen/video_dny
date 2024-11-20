@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>人气明星排行榜_热门人气明星大全 - {$maccms.site_name}</title>
+<meta name="keywords" content="人气明星排行榜,人气明星排行榜,热门人气明星大全" />
+<meta name="description" content="热门人气明星TOP100排行榜排行榜" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="box position t10 pb10"><a href="{$maccms.path}"><i class="iconfont">&#xe64d;</i>首页</a><i class="iconfont">&#xe650;</i><a href="{:mac_url('label/top')}">排行榜</a><i class="iconfont">&#xe650;</i>人气明星排行榜</div>
+<div class="boxt t10">
+<div class="top_left">
+<div class="top_titles"></div>
+<ul>
+<li class="btn"><i class="iconfont">&#xe64b;</i><a href="{:mac_url('label/top')}" title="排行榜首页">排行榜首页</a></li>
+<li class="btn"><i class="iconfont">&#xe606;</i><a href="{:mac_url('label/topmov')}">电影榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe612;</i><a href="{:mac_url('label/toptv')}">电视榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe60e;</i><a href="{:mac_url('label/topdm')}">动漫榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe60c;</i><a href="{:mac_url('label/topzy')}">综艺榜单</a></li>
+<li class="btn cur"><i class="iconfont">&#xe630;</i><a href="{:mac_url('label/topstar')}">人气明星</a></li>
+<li class="btn"><i class="iconfont">&#xe610;</i><a href="{:mac_url('label/topnews')}">热点资讯</a></li>
+</ul></div>
+<div class="top_right">
+{maccms:actor num="50" order="desc" by="hits"}
+<div class="role-starinfo" id="starinfo">
+<a class="aPic" href="{$vo|mac_url_actor_detail}" title="{$vo.actor_name}"><img src="{$vo.actor_pic|mac_url_img}" height="110" width="78" title="{$vo.actor_name}" alt="{$vo.actor_name}" /></a>
+<div class="starinfo-title {if condition="$key lt 4"}top{/if}"><i>{$key}</i><h2><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a></h2>{if condition="$vo.actor_alias neq ''"}<em>别名：{$vo.actor_alias}</em>{/if}<em>{$vo.actor_area}{$vo.actor_sex}{$vo.actor_remarks|mac_default='演员'}</em>{if condition="$vo.actor_weight neq ''"}<em>体重：{$vo.actor_weight}</em>{/if}<div class="hits fn-right">百度指数：{$vo.actor_hits}</div></div>
+<div class="starinfo-all">
+<div class="starinfo-txt">{$vo.actor_content|mac_filter_html|mac_substring=100}</div>
+</div>
+</div>
+{/maccms:actor}
+</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>
