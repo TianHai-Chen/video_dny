@@ -9,7 +9,7 @@ return array (
     'des' => '支持手机电脑在线播放',
     'target' => '_self',
     'ps' => '0',
-    'parse' => 'https://jx.m3u8.tv/jiexi/?url=',
+    'parse' => 'https://jx.xmflv.com/?url=',
     'sort' => '1000',
     'tip' => '无需安装任何插件',
     'id' => 'subm3u8',
@@ -21,8 +21,8 @@ return array (
     'show' => '解析2',//腾讯视频
     'des' => '支持手机电脑在线播放',
     'ps' => '1',
-    'parse' => 'https://jx.m3u8.tv/jiexi/?url=', //https://jx.xxxx.com/?url= | https://jx.wolongm3u8.com:65/m3u8.php?url=
-    'parse2' => 'https://jx.m3u8.tv/jiexi/?url=',
+    'parse' => 'https://jx.xmflv.com/?url=', //https://jx.xxxx.com/?url= | https://jx.wolongm3u8.com:65/m3u8.php?url=
+    'parse2' => 'https://jx.xmflv.com/?url=',
     'sort' => '9999',
     'tip' => '无需安装任何插件',
     'kernel' => '0',
