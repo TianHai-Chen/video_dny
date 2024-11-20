@@ -21,6 +21,7 @@ return array (
     'show' => '解析2',//腾讯视频
     'des' => '支持手机电脑在线播放',
     'ps' => '1',
+    //https://jx.xmflv.com/?url=
     'parse' => 'https://jx.xmflv.com/?url=', //https://jx.xxxx.com/?url= | https://jx.wolongm3u8.com:65/m3u8.php?url=
     'parse2' => 'https://jx.xmflv.com/?url=',
     'sort' => '9999',
