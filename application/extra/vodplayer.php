@@ -5,7 +5,7 @@ return array (
   array (
     'status' => '1',
     'from' => 'subm3u8',
-    'show' => '解析1',//速播资源
+    'show' => '解析1',//速播资源waf
     'des' => '支持手机电脑在线播放',
     'target' => '_self',
     'ps' => '0',
