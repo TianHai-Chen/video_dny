@@ -411,25 +411,18 @@ class All extends Controller
 
         $pwd_key = '1-'.($flag=='play' ?'4':'5').'-'.$info['vod_id'];
 
-
-// var_dump($info);die;
-
-            // $dy_play = mac_url('index/vod/'.$flag.'er',['id'=>$info['vod_id'],'sid'=>$param['sid'],'nid'=>$param['nid']]);
-            // $this->assign('player_data','');
-            // $this->assign('player_js','<div class="MacPlayer" style="z-index:99999;width:100%;height:100%;margin:0px;padding:0px;"><iframe id="player_if" name="player_if" src="'.$dy_play.'" style="z-index:9;width:100%;height:100%;" border="0" marginWidth="0" frameSpacing="0" marginHeight="0" frameBorder="0" scrolling="no" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" ></iframe></div>');
-
-
-// var_dump($dy_play = mac_url('index/vod/'.$flag.'er',['id'=>$info['vod_id'],'sid'=>$param['sid'],'nid'=>$param['nid']]));die;
-
-
-// var_dump( mac_url('index/vod/'.$flag.'er',['id'=>$info['vod_id'],'sid'=>$param['sid'],'nid'=>$param['nid']]));die;
         if( $pe==0 && $flag=='play' && ($popedom['trysee']>0 ) || ($info['vod_pwd_'.$flag]!='' && session($pwd_key)!='1') || ($info['vod_copyright']==1 && !empty($info['vod_jumpurl']) && $GLOBALS['config']['app']['copyright_status']==4) ) {
             $dy_play = mac_url('index/vod/'.$flag.'er',['id'=>$info['vod_id'],'sid'=>$param['sid'],'nid'=>$param['nid']]);
             $this->assign('player_data','');
             $this->assign('player_js','<div class="MacPlayer" style="z-index:99999;width:100%;height:100%;margin:0px;padding:0px;"><iframe id="player_if" name="player_if" src="'.$dy_play.'" style="z-index:9;width:100%;height:100%;" border="0" marginWidth="0" frameSpacing="0" marginHeight="0" frameBorder="0" scrolling="no" allowfullscreen="allowfullscreen" mozallowfullscreen="mozallowfullscreen" msallowfullscreen="msallowfullscreen" oallowfullscreen="oallowfullscreen" webkitallowfullscreen="webkitallowfullscreen" ></iframe></div>');
-        // var_dump(1);die;
         }
         else {
+            $this->assign('player_data', '<script type="text/javascript">var player_data=' . json_encode($player_info) . '</script>');
+            $this->assign('player_js', '<script type="text/javascript" src="' . MAC_PATH . 'static/js/playerconfig.js"></script><script type="text/javascript" src="' . MAC_PATH . 'static/js/player.js"></script>');
+        }
+        $this->label_comment();
+        return $info;
+    }
             $this->assign('player_data', '<script type="text/javascript">var player_data=' . json_encode($player_info) . '</script>');
             $this->assign('player_js', '<script type="text/javascript" src="' . MAC_PATH . 'static/js/playerconfig.js"></script><script type="text/javascript" src="' . MAC_PATH . 'static/js/player.js"></script>');
         }
