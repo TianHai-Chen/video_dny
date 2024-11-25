@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>综艺榜单排行榜_热门综艺榜单大全 - {$maccms.site_name}</title>
+<meta name="keywords" content="综艺榜单排行榜,综艺榜单排行榜,热门综艺榜单大全" />
+<meta name="description" content="热门综艺榜单TOP100排行榜" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="box position t10 pb10"><a href="{$maccms.path}"><i class="iconfont">&#xe64d;</i>首页</a><i class="iconfont">&#xe650;</i><a href="{:mac_url('label/top')}">热搜榜</a><i class="iconfont">&#xe650;</i>综艺榜单排行榜</div>
+<div class="box t10">
+<div class="top_left">
+<div class="top_titles"></div>
+<ul>
+<li class="btn"><i class="iconfont">&#xe64b;</i><a href="{:mac_url('label/top')}" title="排行榜首页">排行榜首页</a></li>
+<li class="btn "><i class="iconfont">&#xe606;</i><a href="{:mac_url('label/topmov')}">电影榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe612;</i><a href="{:mac_url('label/toptv')}">电视榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe60e;</i><a href="{:mac_url('label/topdm')}">动漫榜单</a></li>
+<li class="btn cur"><i class="iconfont">&#xe60c;</i><a href="{:mac_url('label/topzy')}">综艺榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe630;</i><a href="{:mac_url('label/topstar')}">人气明星</a></li>
+<li class="btn"><i class="iconfont">&#xe610;</i><a href="{:mac_url('label/topnews')}">热点资讯</a></li>
+</ul></div>
+<div class="top_right">
+<div class="top_abox">
+<ul>
+{maccms:vod num="50" type="3" order="desc" by="hits"}
+<li class='{if condition="$key lt 4"}top{/if}{if condition="$key%2 == 0"} tow{/if}'><em>{$key}</em>
+<h3 class="w name fn-left"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" target="_blank">{$vo.vod_name}</a></h3>
+<div class="w mcid fn-left">{$vo.vod_class|mac_url_create='class'}</div>
+<div class="w director fn-left"><span>{$vo.vod_director|mac_url_create='director'}</span></div>
+<div class="w actor fn-left">{$vo.vod_actor|mac_url_create='actor'}</div>
+<div class="w hits fn-right">百度搜索指数：{$vo.vod_hits}</div></li>
+{if condition="$key lt 4"}
+<div class="topinfo">
+<div class="topinfo-img">
+<a href="{:mac_url_vod_detail($vo)}" target="_self"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" align="{$vo.vod_name}" title="{$vo.vod_name}" /></a></div>
+<div class="topinfo-r">
+<div class="toptxt" style="width:95%">
+<p class="mcids"><div class="w30 fn-left"><em>分类：</em><a href="{:mac_url_type($vo.type)}">{$vo.type.type_name}</a></div><div class="w30 fn-left"><em>时间：</em>{$vo.vod_time|date='Y-m-d',###}</div></p>
+<p class="infos clear"><em>介绍：</em>{$vo.vod_content|mac_filter_html|mac_substring=80}</p>
+</div>
+</div>
+</div>
+{/if}
+{/maccms:vod}
+</ul>
+</div>
+</div>
+</div>
+﻿{include file="public/foot"}
+</body>
+</html>

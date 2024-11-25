@@ -1,0 +1,4 @@
+if (!-e $request_filename) {
+                rewrite  ^/(.+?\.php)/?(.*)$  /$1/$2  last;
+                rewrite  ^/(.*)$  /index.php/$1  last;
+ }

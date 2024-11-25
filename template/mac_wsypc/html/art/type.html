@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$obj.type_title} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.type_key}" />
+<meta name="description" content="{$obj.type_des}" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="news-tab box t15">
+<ul class="news-tab-img img220x125">
+{maccms:art num="7" type="current" order="desc" by="time"}
+<li{in name="$key" value="1"} class="top"{/in}><a href="{:mac_url_art_detail($vo)}" target="_blank" class="pic">
+<img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.art_pic|mac_url_img}" alt="{$vo.art_name}">
+</a>
+<div class="news-list-txt">
+<h3><a href="{:mac_url_art_detail($vo)}" target="_blank">{$vo.art_name|mac_substring=12}</a></h3>
+<p>{$vo.art_blurb|mac_substring=50}</p>
+</div>
+</li>{/maccms:art}
+</ul>
+</div>
+{maccms:type num="10" flag="art" order="asc" by="sort" }
+<div class="news-tab box t20">
+<div class="w920 fn-left">
+<div class="title"><h2>{$vo.type_name}</h2>
+<a href="{:mac_url_type($vo)}" target="_blank" title="{$vo.type_name}" class="more">更多<i class="iconfont">&#xe61f;</i></a></div>
+<ul class="news-tab-img img163x176">{maccms:art num="7" type="'.$vo['type_id'].'" order="desc" by="time" id="vo2" key="key2"}
+<li{in name="$key2" value="1"} class="top"{/in}>
+<a href="{:mac_url_art_detail($vo2)}" target="_blank" class="pic">
+<img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo2.art_pic|mac_url_img}" alt="{$vo2.art_name}">
+</a>
+{if condition="$key2==1"}
+<div class="news-big-txt">
+<h2><a href="{:mac_url_art_detail($vo2)}" target="_blank">{$vo2.art_name}</a></h2>
+<span>{$vo2.art_blurb|mac_substring=50}</span>
+</div>
+{else /}
+<div class="news-list-txt">
+<h3><a href="{:mac_url_art_detail($vo2)}" target="_blank">{$vo2.art_name|mac_substring=8}</a></h3>
+<p>{$vo2.art_blurb|mac_substring=14}</p>
+</div>
+{/if}
+</li>{/maccms:art}
+</ul>
+</div>
+<div class="w260 fn-right">
+<div class="title"><h2>热门{$vo.type_name}</h2></div>
+<ul class="news-rank pb10">{maccms:art num="1" type="'.$vo['type_id'].'" order="desc" by="hits" id="vo2" key="key2"}
+<li class="top1">
+<a href="{:mac_url_art_detail($vo2)}" target="_blank">
+<img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo2.art_pic|mac_url_img}" alt="{$vo2.art_name}">
+<div class="masktxt">
+<em>{$key2}</em><span>{$vo2.art_name}</span>
+</div>
+</a>
+</li>{/maccms:art}
+{maccms:art num="6" type="'.$vo['type_id'].'" start="2" order="desc" by="hits" id="vo2" key="key2"}
+<li><a href="{:mac_url_art_detail($vo2)}" target="_blank"><em>{$key2+1}</em><span>{$vo2.art_name}</span></a></li>{/maccms:art}
+</ul>
+</div>
+</div>
+{/maccms:type}
+{include file="public/foot"}
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>{$obj.topic_name}专题详情- {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.topic_name}电影专题,{$obj.topic_name}电视剧专题,{$obj.topic_name}综艺专题,{$obj.topic_name}动漫专题,{$obj.topic_name}推荐专题" />
+<meta name="description" content="本站提供{$obj.topic_name},最新最全精品专题数据" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<!--当前位置-->
+<div class="list_type">
+<div class="list_type_title box">
+	<h2>影视专题</h2>
+	<ul class="conbread">
+	</ul>
+</div>
+<div class="list_type_nav box">
+	<div class="list_type_box">
+		<span>
+		<a href="{:mac_url_topic_index()}">影视专题</a> > {$obj.topic_name}
+		</span>
+	</div>
+</div>
+</div>
+<!--专题-->
+<div class="box t20">
+<div class="list_type_tool">
+</div>
+<div class="uipages toppage">
+</div>
+<div class="list_toppage">
+</div>
+</div>
+<!--专题视频-->
+<div class="back-tab boxn box">
+<ul class="up-list list-img">{maccms:foreach name="$obj.vod_list"}
+<li><a href="{:mac_url_vod_detail($vo)}" target="_blank"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{:mac_url_img($vo.vod_pic)}" alt="{$vo.vod_name}" title="{$vo.vod_name}"><label class="qx">{include file="public/serial1"}</label>
+<div class="info">
+	<i class="iconfont">&#xe622;</i>
+</div>
+</a>
+<div class="txt">
+	<h3><a href="{:mac_url_vod_detail($vo)}" target="_blank">{$vo.vod_name}</a></h3>
+	<span class="des">{$vo.vod_actor}</span>
+</div>
+</li>{/maccms:foreach}
+</ul>
+</div>
+<span style="display:none" class="mac_ulog_set" alt="设置内容页浏览记录" data-type="1" data-mid="{$maccms.mid}" data-id="{$obj.topic_id}" data-sid="" data-nid=""></span>
+<span style="display:none" class="mac_history_set" alt="设置History历史记录" data-name="{$obj.topic_name}" data-pic="{$obj.topic_pic|mac_url_img}"></span>
+{include file="public/foot"}
+</body>
+</html>
+

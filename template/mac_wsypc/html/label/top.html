@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>电视剧排行榜 电影排行榜 热门综艺 动漫排行榜 微电影排行 热播榜 - {$maccms.site_name}</title>
+<meta name="keywords" content="2018最新电视剧,2018最新电影,电影排行榜,电视剧大全,好看的电视剧,{$maccms.site_name}" />
+<meta name="description" content="{$maccms.site_name}为您提供2018最新电视剧、电视剧大全、好看的电视剧、最新的电影在线观看和迅雷电影下载，每天更新最新好看的电视剧，最新综艺真人秀，明星信息与相关电影电视剧，同时提供电影演员表、电视剧演员表，角色等相关内容，是影视爱好者们的电影天堂{$maccms.site_url}" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="box position t10 pb10"><a href="{$maccms.path}"><i class="iconfont">&#xe64d;</i>首页</a><i class="iconfont">&#xe650;</i>热搜榜</div>
+<div class="box t10">
+<div class="top_left">
+<div class="top_titles"></div>
+<ul>
+<li class="btn cur"><i class="iconfont">&#xe64b;</i><a href="{:mac_url('label/top')}" title="排行榜首页">排行榜首页</a></li>
+<li class="btn"><i class="iconfont">&#xe606;</i><a href="{:mac_url('label/topmov')}">电影榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe612;</i><a href="{:mac_url('label/toptv')}">电视榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe60e;</i><a href="{:mac_url('label/topdm')}">动漫榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe60c;</i><a href="{:mac_url('label/topzy')}">综艺榜单</a></li>
+<li class="btn"><i class="iconfont">&#xe630;</i><a href="{:mac_url('label/topstar')}">人气明星</a></li>
+<li class="btn"><i class="iconfont">&#xe610;</i><a href="{:mac_url('label/topnews')}">热点资讯</a></li>
+</ul></div>
+<div class="top_right">
+{maccms:type ids="1,2,3,4" order="asc" by="sort"}
+<div class="top_box">
+<h2>{$vo.type_name}<a class="more" title="{$vo.type_name}排行榜" href="{if condition="$vo.type_id==1"}{:mac_url('label/topmov')}{elseif condition="$vo.type_id==2"}{:mac_url('label/toptv')}{elseif condition="$vo.type_id==3"}{:mac_url('label/topzy')}{elseif condition="$vo.type_id==4"}{:mac_url('label/topdm')}{else /}{:mac_url('label/topnews')}{/if}">更多</a></h2>
+<ul>
+{maccms:vod num="10" type="'.$vo['type_id'].'" order="desc" by="hits" id="vo2" key="key2"}
+<li{if condition="$key2 lt 4"} class="top"{/if}><i>{$key2}</i><a href="{:mac_url_vod_detail($vo2)}" title="{$vo2.vod_name}" target="_blank">{$vo2.vod_name|mac_substring=14}</a><em>{$vo2.vod_hits}</em></li>
+{/maccms:vod}
+</ul>
+</div>
+{/maccms:type}
+{maccms:type ids="5" order="asc" by="sort"}
+<div class="top_box">
+<h2>{$vo.type_name}<a class="more" title="{$vo.type_name}排行榜" href="{if condition="$vo.type_id==1"}{:mac_url('label/topmov')}{elseif condition="$vo.type_id==2"}{:mac_url('label/toptv')}{elseif condition="$vo.type_id==3"}{:mac_url('label/topzy')}{elseif condition="$vo.type_id==4"}{:mac_url('label/topdm')}{else /}{:mac_url('label/topnews')}{/if}">更多</a></h2>
+<ul>
+{maccms:art num="10" type="'.$vo['type_id'].'" order="desc" by="hits" id="vo2" key="key2"}
+<li{if condition="$key2 lt 4"} class="top"{/if}><i>{$key2}</i><a href="{:mac_url_art_detail($vo2)}" title="{$vo2.art_name}" target="_blank">{$vo2.art_name|mac_substring=14}</a><em>{$vo2.art_hits}</em></li>
+{/maccms:art}
+</ul>
+</div>
+{/maccms:type}
+<div class="top_box">
+<h2>明星<a class="more" title="明星热搜" href="{$vo|mac_url_actor_index}">更多</a></h2>
+<ul>
+{maccms:actor num="10" order="desc" by="hits"}
+<li{if condition="$key lt 4"} class="top"{/if}><i>{$key}</i><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name|mac_substring=14}</a><em>{$vo.actor_hits}</em></li>
+{/maccms:actor}
+</ul>
+</div>
+</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>

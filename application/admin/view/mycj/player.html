@@ -1,0 +1,41 @@
+<div class="page-container p10 player-set">
+  <form class="layui-form layui-form-pane">
+    <div class="layui-tab">
+      <blockquote class="layui-elem-quote">
+        <p><b style="color:#9400D3">这里的播放配置，仅适用于网页端，如果你程序是二次修改对接的小程序或者app的，此处编辑或添加的播放器可能没有效果。</b></p>
+      </blockquote>
+      {if condition="count($info)>1" }
+      <div class="layui-btn layui-btn-sm jx-select">
+        <span>批量选择播放器</span>
+        <i class="layui-icon layui-icon-down layui-font-12"></i>
+      </div>
+      {/if} 
+      <div class="layui-tab-content" >       
+        <div class="layui-tab-item layui-show">
+          {volist name="info" id="vo" key="k"}
+          <input type="hidden" value="{$vo.sort}" name="sort[]">
+          <div class="layui-form-item">
+            <label class="layui-form-label">播放器名称</label>
+            <div class="layui-input-inline" tips="播放器名称可自定义修改" style="width:100px">
+              <input type="text" class="layui-input" value="{$vo.show}" lay-verify="required" placeholder="播放器的名称" name="show[]"></div>
+            <label class="layui-form-label">播放器编码</label>
+            <div class="layui-input-inline" tips="资源站的播放编码，不可编辑" style="width:100px">
+              <input type="text" class="layui-input layui-disabled" value="{$vo.from}" disabled="" name="from[]"></div>
+          </div>
+          <div class="layui-form-item">
+            <label class="layui-form-label">解析接口</label>
+            <div class="layui-input-inline" tips="可选或输入要使用的解析接口或播放器" style="width:320px">
+              <input type="text" class="layui-input jxlink" value="{$vo.parse}" placeholder="请输入要使用的解析接口或播放器" id="apis_{$k}" name="link[]">
+            </div>
+		      </div>
+		      {/volist}
+        </div>
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <button type="submit" class="layui-btn" id="layui-btn-submit" lay-submit="*" lay-filter="addplayer" data-child="true">保存配置</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

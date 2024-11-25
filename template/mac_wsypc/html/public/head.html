@@ -1,0 +1,34 @@
+<div class="top-boxs">
+	<div class="header">
+		<div class="logo">
+			<h1><a href="{$maccms.path}" class="logo" title="{$maccms.site_name}"><img src="{$maccms.path_tpl}images/logo.png" alt="{$maccms.site_name}"></a></h1>
+		</div>
+		<ul class="nav">
+			<li class="home {if condition="$maccms.aid eq 1"}on{/if}"><a href="{$maccms.path}"><i class="iconfont">&#xe64b;</i></a></li>
+{maccms:type ids="parent" order="asc" by="sort"}
+			<li {if condition="$obj.type_id eq $vo.type_id"}class="on"{/if}><a href="{:mac_url_type($vo)}" title="{$vo.type_name}">{$vo.type_name}</a></li>{/maccms:type}
+			<li {if condition="$maccms.aid eq 30 or $maccms.aid eq 31"}class="on"{/if}><a href="{:mac_url_topic_index()}" title="专题">专题</a></li>
+			<li {if condition="$maccms.aid eq 4"}class="on"{/if}><a href="{:mac_url('gbook/index')}" title="留言">留言</a></li>
+			<li class="more">更多</li>
+		</ul>
+		<div class="saerch">
+			<form method="post" action="{:mac_url('vod/search')}">
+				<input type="text" id="wd" name="wd" class="search-input mac_wd" value="输入影片片名或演员名称。" onfocus="if(this.value=='输入影片片名或演员名称。'){this.value='';}" onblur="if(this.value==''){this.value='输入影片片名或演员名称。';};" autocomplete="off"/><a class="search-top" href="{:mac_url('label/top')}" target="_blank"></a><input type="submit" id="btn" class="search-button" value=""/>
+			</form>
+		</div>
+		<div class="header_r">
+			<a href="javascript:;" class="recor mac_history"><i class="iconfont">&#xe655;</i>观看记录</a>
+			<a href="javascript:;" class="login mac_user"><i class="iconfont">&#xe653;</i>登录</a>
+		</div>
+	</div>
+</div>
+<div class="nav_more">
+	<ul>
+		<li><a href="{$vo|mac_url_actor_index}" title="明星" target="_self">明星</a></li>
+		<li><a href="{$vo|mac_url_role_index}" title="角色" target="_self">角色</a></li>
+		<li><a href="{:mac_url('label/live')}" title="直播" target="_self">直播</a></li>
+		<li><a href="{:mac_url('label/top')}" title="榜单" target="_self">榜单</a></li>
+		<li><a href="{:mac_url('label/new')}" title="最新" target="_self">最新</a></li>
+		<li><a href="{:mac_url('map/index')}" title="地图" target="_self">网站地图</a></li>
+	</ul>
+</div>

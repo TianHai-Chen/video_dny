@@ -1,0 +1,84 @@
+{include file="../../../application/admin/view/public/head" /}
+<div class="page-container p10">
+
+    <div class="my-toolbar-box" >
+        <div class="center mb10">
+          
+        </div>
+        <div class="layui-btn-group">
+            <a data-href="{:url('del')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="layui-icon">&#xe640;</i>删除</a>
+            <a data-href="{:url('del')}?all=1" class="layui-btn layui-btn-primary j-ajax" confirm="确认清空数据吗？操作不可恢复"><i class="layui-icon">&#xe640;</i>清空</a>
+        </div>
+    </div>
+
+
+        <form class="layui-form" method="post" id="pageListForm" >
+            <table class="layui-table" lay-size="sm">
+            <thead>
+            <tr>
+                <th width="25"><input type="checkbox" lay-skin="primary" lay-filter="allChoose"></th>
+                <th width="60">编号</th>
+                <!--<th width="60">状态</th>-->
+                <th width="60">类型</th>
+                <th >弹幕内容</th>
+                <th width="100">操作</th>
+            </tr>
+            </thead>
+
+            {volist name="list" id="vo"}
+            <tr>
+                <td><input type="checkbox" name="ids[]" value="{$vo.danmu_id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
+                <td>{$vo.danmu_id}</td>
+                <td>弹幕数据</td>
+                <td>
+                    <div class="c-999 f-12">
+                        <u style="cursor:pointer" class="text-primary">片名：【{$vo.danmu_name}】</u>
+                         <time>发表时间【{$vo.danmu_time|mac_day=color}】</time>
+                        <span class="ml-20">ip：【{$vo.danmu_ip|long2ip}】</span>
+                    </div>
+                    <div class="f-12 c-999">
+                        <span class="ml-20">弹幕内容：</span>
+                        {$vo.content}
+                    </div>
+                </td>
+                <td>
+                    <a class="layui-badge-rim j-iframe" data-href="{:url('info?id='.$vo['danmu_id'])}" href="javascript:;" title="编辑">编辑</a>
+                    <a class="layui-badge-rim j-tr-del" data-href="{:url('del?ids='.$vo['danmu_id'])}" href="javascript:;" title="删除">删除</a>
+                </td>
+            </tr>
+            {/volist}
+            </tbody>
+        </table>
+
+        <div id="pages" class="center"></div>
+
+    </form>
+</div>
+
+{include file="../../../application/admin/view/public/foot" /}
+
+<script type="text/javascript">
+    var curUrl="{:url('danmu/data',$param)}";
+    layui.use(['laypage', 'layer','form'], function() {
+        var laypage = layui.laypage
+                , layer = layui.layer,
+                form = layui.form;
+
+        laypage.render({
+            elem: 'pages'
+            ,count: {$total}
+            ,limit: {$limit}
+            ,curr: {$page}
+            ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+            ,jump: function(obj,first){
+                if(!first){
+                    location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
+                }
+            }
+        });
+
+
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+MacPlayer.Html='<iframe width="100%" height="'+MacPlayer.Height+'" src="https://api.xiaomaomi.tv/home/api?type=app&uid=9458830&key=ablpqstvyBFGOZ1259&url=,'+MacPlayer.PlayUrl+'" frameborder="0" allowfullscreen="true" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';MacPlayer.Show();

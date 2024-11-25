@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>最新更新的100个电视剧、电影、动漫、综艺节目 - {$maccms.site_name}</title>
+<meta name="keywords" content="最新最新,2018最新电视剧,2018最新电影,电影排行榜,电视剧大全,好看的电视剧,{$maccms.site_name}" />
+<meta name="description" content="{$maccms.site_name}为您提供2018最新电视剧、电视剧大全、好看的电视剧、最新的电影在线观看和迅雷电影下载，每天更新最新好看的电视剧，最新综艺真人秀，明星信息与相关电影电视剧，同时提供电影演员表、电视剧演员表，角色等相关内容，是影视爱好者们的电影天堂{$maccms.site_url}" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="box position t10"><a href="{$maccms.path}" style="margin-left:10px;"><i class="iconfont">&#xe64d;</i>首页</a><i class="iconfont">&#xe650;</i>最近更新</div>
+<div class="box new t10">
+<div class="top_right">
+<div class="top_abox">
+<ul>
+{maccms:vod num="50" type="1,2,3,4" order="desc" by="time"}
+<li class='{if condition="$key lt 6"}top{/if}{if condition="$key%2 == 0"} tow{/if}'><em>{$key}</em>
+<h3 class="w name fn-left"><a href="{:mac_url_vod_detail($vo)}" title="{$vo.vod_name}" target="_blank">{$vo.vod_name}</a> / {include file="public/serial1"}</h3>
+<div class="w director fn-left"><a href="{:mac_url_type($vo.type)}" target="_blank">{$vo.type.type_name}</a></div>
+<div class="w mcid fn-left">{$vo.vod_class|mac_url_create='class'}</div>
+<div class="w actor fn-left">{$vo.vod_actor|mac_url_create='actor'}</div>
+<div class="w addtime fn-right"><i><font color="#ff6a1f">{$vo.vod_time|mac_day}</font></i><i class="iconfont">&#xe651;</i></div>
+</li>
+{/maccms:vod}
+</ul>
+</div>
+</div>
+</div>
+﻿{include file="public/foot"}
+</body>
+</html>

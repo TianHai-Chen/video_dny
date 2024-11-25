@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>萌芽采集插件 - 官方网址：Mycj.pro</title>
+	<link rel="stylesheet" href="__STATIC__/mycj/layui2.9.16/css/layui.css">
+    <script type="text/javascript" src="__STATIC__/mycj/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/mycj/layui2.9.16/layui.js"></script>
+	<script type="text/javascript" src="__STATIC__/mycj/js/crypto-js.min.js"></script>
+	<script type="text/javascript" src="__STATIC__/mycj/js/clipboard.min.js"></script>
+	<style type="text/css">body a,layui-table a{cursor:pointer}.layui-table a{color:#01AAED}.loading{padding-top:30px;text-align:center;}.footer{padding:30px 0;line-height:30px;text-align:center;color:#666;font-weight:300}.p10{padding:10px;}.card-header-tips{margin-left:8px;color:#999 !important;}.w150{width:150px!important;}.cj-images{float:right;margin:9px 11px 0 0;}#Images li{width:49%;margin:0.5% 0.5%;float:left;overflow:hidden}#Images li img{width:100%;height:300px;cursor:pointer}#Images li .operate{display:block;height:40px;width:100%;background:#f4f5f9}#Images li .operate .check{float:left;margin-left:11px;height:18px;padding:11px 0;width:54%;position:relative}#Images li .operate .check .layui-form-checkbox[lay-skin=primary]{width:100%}#Images li .operate .check .layui-form-checkbox[lay-skin=primary] span{padding:0 5px 0 25px;width:100%;box-sizing:border-box}#Images li .operate .check .layui-form-checkbox[lay-skin=primary] i{position:absolute;left:0;top:0}#Images li .operate .layui-copy{float:right;margin:9px 11px 0 0;cursor:pointer}#Images li .operate .layui-copy:hover{color:#f00}@media screen and (max-width:1050px){#Images li{width:49%}#Images li img{width:100%;height:150px;cursor:pointer}}@media screen and (max-width:750px){#Images li{width:100%}#Images li img{width:100%;height:150px;cursor:pointer}.layui-colla-content,.mycj-header{white-space:nowrap;overflow:scroll;position:relative;width:100%}.layui-colla-content{padding:0 0}#show-advs td{float:left;width:100%}.page-container .layui-tab-content{padding:15px 0px 50px 0px;}.layui-layout-right{padding:0px 20px 0px 0px;}}@media screen and (max-width:768px){}@media screen and (max-width:432px){}</style>
+	<script>
+		var ROOT_PATH = "__ROOT__",ADMIN_PATH = "{$_SERVER['SCRIPT_NAME']}",MAC_VERSION = "v10",CMS_VER = "{$config['macver']}",app_path = "{$GLOBALS['config']['app']['pathinfo_depr']}", plug = {$cjinfo|json_encode};cjdata = {$cjdata};
+	</script>
+</head>
+<body>
+<div class="page-container">
+  <div class="layui-row">
+	<input type="hidden" name="__token__" id="token" value="{$Request.token}" />
+    <div class="layui-header">
+		<ul class="layui-nav layui-hide-xs mycj-header">
+		  <li class="layui-nav-item layui-this">
+			<a href="">萌芽采集资源</a>
+		  </li>	
+		  <li class="layui-nav-item layuiBtn" data-type="cjset">
+			<a href="javascript:;">设置</a>
+		  </li> 	
+		  <li class="layui-nav-item layuiBtn" data-type="task">
+			<a href="javascript:;">定时任务</a>
+		  </li>  	  
+		  <li class="layui-nav-item layuiBtn" data-type="poster">
+			<a href="javascript:;">视频海报</a>
+		  </li>
+		  <li class="layui-nav-item layuiBtn" data-type="dataReplace">
+			<a href="javascript:;">数据替换</a>
+		  </li> 
+		  <li class="layui-nav-item layuiBtn" data-type="addcj">
+			<a href="javascript:;">添加资源</a>
+		  </li>	
+		  <li class="layui-nav-item">
+			<a href="https://www.mycj.pro/mb" target="_blank">主题模板</a>
+		  </li>
+		  <li class="layui-nav-item layuiBtn" data-type="help">
+			<a href="javascript:;">采集教程</a>
+		  </li>		  
+		  <li class="layui-nav-item layuiBtn" data-type="feedback">
+			<a href="javascript:;">建议反馈</a>
+		  </li> 
+		</ul>
+		<ul class="layui-nav layui-hide-sm"> 
+		  <li class="layui-nav-item layui-this">
+			<a href="">萌芽采集资源</a>
+		  </li>		  
+		  <li class="layui-nav-item">
+			<a href="javascript:;">菜单</a>
+			<dl class="layui-nav-child">
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="cjset"><i class="layui-icon layui-icon-set"></i> 设置</a></dd>
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="task"><i class="layui-icon layui-icon-flag"></i> 定时任务</a></dd>
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="poster"><i class="layui-icon layui-icon-picture-fine"></i> 视频海报</a></dd>
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="dataReplace"><i class="layui-icon layui-icon-fonts-code"></i> 数据替换</a></dd>
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="help"><i class="layui-icon layui-icon-help"></i> 采集教程</a></dd>	
+			  <dd><a href="https://www.mycj.pro/mb" target="_blank"><i class="layui-icon layui-icon-templeate-1"></i> 主题模板</a></dd>	
+			</dl>
+		  </li> 		  
+		</ul>		
+		<ul class="layui-nav layui-layout-right">
+		  <li class="layui-nav-item"> 
+			<a href="javascript:;"><img src="__STATIC__/mycj/pro_icon.png"> {$cjinfo.version}</a>
+			<dl class="layui-nav-child">
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="update"><i class="layui-icon layui-icon-refresh"></i> 检查更新</a></dd>	
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="uninstall"><i class="layui-icon layui-icon-delete"></i> 卸载插件</a></dd>
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="feedback"><i class="layui-icon layui-icon-reply-fill"></i> 建议反馈</a></dd>
+			  <dd><a href="javascript:;" class="layuiBtn" data-type="about"><i class="layui-icon layui-icon-release"></i> 联系我们</a></dd>
+			</dl>
+		  </li>  
+		</ul>
+    </div>
+    <div class="mycj-content p10">
+        <div class="layui-form mycj-data-list">
+			<div style="margin: 10px 0px;">
+				<div class="layui-row layui-col-space6">
+					{if condition="$collect_break_vod neq ''"}
+					<div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="width:190px;">
+						<a data-href="{:url('collect/load')}?flag=vod" class="layui-btn layui-bg-red layuiBtn" data-type="iframe" data-name="视频断点采集">【进入视频断点采集】</a>
+					</div>
+					{/if}
+					{if condition="$collect_break_art neq ''"}
+						<div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="width:190px;">
+							<a data-href="{:url('collect/load')}?flag=art" class="layui-btn layui-bg-red layuiBtn" data-type="iframe" data-name="文章断点采集">【进入文章断点采集】</a>
+						</div>
+					{/if}
+					{if condition="$collect_break_actor neq ''"}
+						<div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="width:190px;">
+							<a data-href="{:url('collect/load')}?flag=art" class="layui-btn layui-bg-red layuiBtn" data-type="iframe" data-name="明星断点采集">【进入明星断点采集】</a>
+						</div>
+					{/if}
+					<div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:160px;">
+						<select name="collect" lay-verify="required">
+							<option value="zanzhu">推荐采集专区</option>
+							<option value="faves">我的收藏专区</option>
+							<option value="collect">自定义资源</option>
+							<option value="m3u8">切片资源专区</option>
+							<option value="offi">官采资源专区</option>
+						</select>
+				    </div>
+					<div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:220px;">
+						<div class="layui-input-wrap">
+							<input type="text" required lay-verify="required" placeholder="查找资源，请输入关键字" autocomplete="off" class="layui-input layui-input-search">
+						</div>
+					</div>
+					<div class="layui-col-xs4 layui-col-md2 layui-col-lg2" style="max-width:100px;">
+						<button type="button" class="layui-btn layuiBtn" data-type="searchKey">立即搜索</button>
+					</div>
+				</div>  
+			</div>
+			<div class="layui-collect"></div>
+        </div>
+    </div>
+	<div class="footer">
+		<p>『萌芽采集插件』官方网址：<a href="https://www.mycj.pro/" target="_blank" style="color:blue;">www.mycj.pro</a></p>
+		<p>本插件完全免费使用，仅供个人研究学习使用。请在遵守法律的前提下使用本插件，否则后果自负！</p>
+        <p>本插件只负责收集整理资源站，采集接口、数据均由第三方资源站提供；数据问题请联系资源站处理</p>
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="__STATIC__/mycj/js/index.js?v={$cjinfo.version}"></script>
+</body>
+</html>

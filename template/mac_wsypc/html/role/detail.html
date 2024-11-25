@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>{$obj.role_actor} - {$maccms.site_name}</title>
+<meta name="keywords" content="{$obj.role_actor},{$maccms.site_name}" />
+<meta name="description" content="{$obj.role_actor},{$maccms.site_name}" />
+{include file="public/include"}
+</head>
+<body>
+{include file="public/head"}
+<div class="vod">
+<div class="boxn">
+	<h1 class="neih1">{$obj.data.vod_name}{$obj.role_name}</h1>
+	<div class="vod-nav">
+		<ul>
+			<a class="btn cur" href="#" title="角色详细">角色详细</a>
+		</ul>
+	</div>
+	<div class="w920 fn-left">
+		<div class="story-page-title">
+			<div class="story-title">
+				{$obj.data.vod_name}{$obj.role_name}<span>扮演者：</span><a href="{$obj|mac_url_role_detail}">{$obj.role_actor}</a>
+			</div>
+			<div class="fn-right qrcode">
+				<div class="qr-code-ico">
+					<i class="iconfont">&#xe62d;</i>
+				</div>
+				<div class="qr-code">
+					<div class="qr-code-box">
+						<div id="ncode">
+						</div>
+					</div>
+					<p>
+						手机扫一扫轻松观看
+					</p>
+					<p>
+						<em>{$obj.data.vod_name}{$obj.role_name}</em>
+					</p>
+				</div>
+				<div class="bdsharebuttonbox" data-tag="share_1">
+					<p class="els-ico" id="hony-share-services">
+						<i class="iconfont"><a rel="nofollow" class="s-sina" data-cmd="tsina">&#xe62e;</a></i><i class="iconfont"><a rel="nofollow" class="s-qzone" data-cmd="qzone">&#xe62b;</a></i><i class="iconfont"><a rel="nofollow" class="s-weixin" data-cmd="weixin">&#xe627;</a></i><i class="iconfont"><a rel="nofollow" class="s-qq" data-cmd="sqq">&#xe62a;</a></i><i class="iconfont"><a rel="nofollow" class="bds_more" data-cmd="more">&#xe631;</a></i>
+					</p>
+				</div>
+				<script>window._bd_share_config = {common : {bdText : '{$obj.data.vod_name}',bdDesc : '{$obj.role_content|mac_filter_html}',bdUrl : 'http://{$maccms.site_url}{$obj|mac_url_role_detail}', bdPic : '{$obj.role_pic|mac_url_img}'},share : [{"bdSize" :4}]} 
+with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?cdnversion='+~(-new Date()/36e5)];
+				</script>
+			</div>
+		</div>
+		<div class="roleinfo">
+			<div class="role-img">
+				<div class="rolename btn">角色</div>
+				<a class="arimg" href="{$obj|mac_url_role_detail}"><img class="loading" src="{$obj.role_pic|mac_url_img}" alt="{$obj.data.vod_name}{$obj.role_name}剧照" title="{$obj.data.vod_name}{$obj.role_name}剧照"/></a>
+				<div class="vodtool">{$obj.data.vod_name}{$obj.role_name}剧照</div>
+				<div class="vodtoolbj"></div>
+			</div>{maccms:actor num="1" wd="'.$obj['role_actor'].'" order="desc" by="time"}
+			<div class="role-img" id="star">
+				<div class="rolename btn">演员</div>
+				<img class="loading" src="{$vo.actor_pic|mac_url_img}" alt="{$obj.data.vod_name}{$obj.role_actor}扮演{$obj.role_name}" title="{$obj.role_actor}"/>
+				<div class="vodtool">《{$obj.role_actor}》饰</div>
+				<div class="vodtoolbj">
+				</div>
+			</div>{/maccms:actor}
+			<div class="roletxt">
+				<p><span>{$obj.role_name}介绍：</span>{$obj.role_content|mac_filter_html}</p>
+				<div class="rolejs">
+					<a class="rvn" href="{$obj.data|mac_url_vod_detail}" target="_blank">{$obj.data.vod_name}{$obj.role_name}</a>的扮演者是{maccms:actor num="1" wd="'.$obj['role_actor'].'" order="desc" by="time"}<a class="rsn" href="{$vo|mac_url_actor_detail}" target="_blank">{$obj.role_actor}</a>{/maccms:actor}
+				</div>
+			</div>
+		</div>
+		{maccms:vod num="1" ids="'.$obj['role_rid'].'" order="desc" by="time" id="vo1" key="key1"}
+		<div class="player-info back-tab t10">
+			<div class="player-info-img">
+				<a href="{:mac_url_vod_detail($vo1)}" target="_self"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo1.vod_pic|mac_url_img}" align="{$vo1.vod_name}" title="{$vo1.vod_name}"/></a>
+			</div>
+			<!--player-info-img-end-->
+			<div class="player-info-x">
+				<div class="player-info-l">
+					<h3>{$vo1.vod_name}<em>{include file="public/serial1"}</em></h3>
+					<p class="mcid"><em>标签：</em>{$vo1.vod_class|mac_url_create='class'}</p>
+					<p><em>导演：</em>{$vo1.vod_director|mac_url_create='director'}</p>
+					<p><em>主演：</em>{$vo1.vod_actor|mac_url_create='actor'}</p>
+					<div class="player-info-jj">
+						<em>介绍：</em>{$vo1.vod_content|mac_filter_html}
+					</div>
+				</div>
+				<!--player-info-l-end-->
+				<div class="w260 fn-right t15 mr10">
+					<div class="star-tab">
+						<ul class="star-r-list">{maccms:role num="6" rid="'.$vo1['vod_id'].'" order="desc" by="time" id="vo2" key="key2"}
+							<li id="mx{$key2}" onmouseover="setTab('mx',{$key2},3);" class="current"><a href="{$vo2|mac_url_role_detail}" target="_blank" class="aPic"><img src="{$vo2.role_pic|mac_url_img}" align="{$vo2.role_actor}" title="{$vo2.role_actor}" width="68" height="92"></a>
+							<h3>{$vo2.role_actor}</h3>
+							</li>{/maccms:role}
+						</ul>
+					</div>
+					<!--star-tab-end-->
+				</div>
+				<!--w260-end-->
+			</div>
+			<!--player-info-x-end-->
+		</div>
+		{/maccms:vod}
+		{maccms:actor num="1" wd="'.$obj['role_actor'].'" order="desc" by="time"}
+		<div class="role-starinfo" id="starinfo">
+			<div class="aPic">
+				<img src="{$vo.actor_pic|mac_url_img}" height="110" width="78" title="{$vo.actor_name}" alt="{$vo.actor_name}"/>
+			</div>
+			<div class="starinfo-title">
+				<h2><a href="{$vo|mac_url_actor_detail}" target="_blank">{$vo.actor_name}</a></h2>
+				<em>{$vo.actor_area}{$vo.actor_sex}{$vo.actor_remarks|mac_default='演员'}</em><em>身高：{$vo.actor_height}</em><em>体重：{$vo.actor_weight}</em><a href="{$vo|mac_url_actor_detail}" target="_blank" class="fn-right more">查看韩童生资料<i class="iconfont">&#xe61f;</i></a>
+			</div>
+			<div class="starinfo-all">
+				<div class="starinfo-txt">{$vo.actor_content|mac_filter_html}</div>
+				<div class="title rtitle t5">
+					<h2>{$vo.actor_name}近期作品</h2>
+					<a href="{$vo|mac_url_actor_detail}" target="_blank" class="more">更多<i class="iconfont">&#xe61f;</i></a>
+				</div>
+				<ul class="role-starlist">{maccms:vod num="16" actor="'.$vo['actor_name'].'" order="desc" by="time" id="vo1" key="key1"}
+					<li><span class="srolename">{$vo1.vod_year}<a href="{:mac_url_vod_detail($vo1)}" target="_blank">《{$vo1.vod_name}》</a></span><span class="svodinfo">主演：{$vo1.vod_actor|mac_url_create='actor'}</span></li>{/maccms:vod}
+				</ul>
+			</div>
+		</div>{/maccms:actor}
+	</div>
+	<div class="w260 fn-right" style="margin-top:-5px">{maccms:type ids="1,2" order="asc" by="sort" id="vo5" key="key5"}
+		<div class="title ont">
+			<h2><a href="{:mac_url_type($vo5)}" target="_blank">{$vo5.type_name}排行榜</a></h2>
+		</div>
+		<ul class="hot-list back-tab">{maccms:vod num="1" type="'.$vo5['type_id'].'" order="desc" by="hits_week"}
+			<li class="hot1">
+			<div class="hot1-img">
+				<a href="{:mac_url_vod_detail($vo)}" target="_blank"><img class="loading" src="{$maccms.path_tpl}images/pic.png" data-original="{$vo.vod_pic|mac_url_img}" alt="{$vo.vod_name}" title="{$vo.vod_name}"></a><span>{$key}</span>
+			</div>
+			<div class="hot-txt">
+				<h3><a href="{:mac_url_vod_detail($vo)}" target="_blank">{$vo.vod_name}</a></h3>
+				<p><i>导演：</i>{$vo.vod_director|mac_default='未知'}</p>
+				<p><i>主演：</i>{$vo.vod_actor}</p>
+				<p><i>类型：</i>{$vo.vod_class}</p>
+				<p><i>状态：</i>{include file="public/serial1"}</p>
+			</div>
+			</li>{/maccms:vod}
+			{maccms:vod num="9" type="'.$vo5['type_id'].'" order="desc" by="hits_week"}
+			<li><span {in name="$key" value="1,2"}class="cut"{/in}>{$key+1}</span><a href="{:mac_url_vod_detail($vo)}" target="_self">{$vo.vod_name}</a><em class="cut">{$vo.vod_score}</em></li>{/maccms:vod}
+		</ul>{/maccms:type}
+	</div>
+</div>
+{include file="public/foot"}
+</body>
+</html>
