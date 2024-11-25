@@ -10,7 +10,7 @@ class Index extends Base
 
     public function index()
     {
-
+        print_r($maccms);exit;
         return $this->label_fetch('index/index');
     }
 
