@@ -423,9 +423,4 @@ class All extends Controller
         $this->label_comment();
         return $info;
     }
-            $this->assign('player_data', '<script type="text/javascript">var player_data=' . json_encode($player_info) . '</script>');
-            $this->assign('player_js', '<script type="text/javascript" src="' . MAC_PATH . 'static/js/playerconfig.js"></script><script type="text/javascript" src="' . MAC_PATH . 'static/js/player.js"></script>');
-        }
-        $this->label_comment();
-        return $info;
-    }
+}
