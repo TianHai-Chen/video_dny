@@ -5,7 +5,7 @@ return array (
     'status' => '1',
     'from' => 'slm3u8',
     'show' => '森林资源',
-    'des' => '支持手机电脑在线播放',
+    'des' => '支持手机电脑在线播放',//1
     'ps' => '1',
     'parse' => 'https://jx.xmflv.com/?url=',
     'parse2' => 'https://jx.xmflv.com/?url=',
