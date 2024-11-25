@@ -436,4 +436,3 @@ class All extends Controller
         $this->label_comment();
         return $info;
     }
-}
