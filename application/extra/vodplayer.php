@@ -1,5 +1,39 @@
 <?php
 return array (
+  'bjyun' => 
+  array (
+    'status' => '1',
+    'from' => 'bjyun',
+    'show' => '解析2',
+    'des' => '支持手机电脑在线播放',
+    'ps' => '1',
+    'parse' => 'https://jx.xmflv.com/?url=',
+    'parse2' => 'https://jx.xmflv.com/?url=',
+    'sort' => '9999',
+    'tip' => '无需安装任何插件',
+    'kernel' => '0',
+    'features' => '.*?.mp4,.*?.m3u8',
+    'headers' => '',
+    'issethead' => '',
+    'id' => 'bjyun',
+  ),
+  'bjm3u8' => 
+  array (
+    'status' => '1',
+    'from' => 'bjm3u8',
+    'show' => '解析3',
+    'des' => '支持手机电脑在线播放',
+    'ps' => '1',
+    'parse' => 'https://jx.xmflv.com/?url=',
+    'parse2' => 'https://jx.xmflv.com/?url=',
+    'sort' => '9999',
+    'tip' => '无需安装任何插件',
+    'kernel' => '0',
+    'features' => '.*?.mp4,.*?.m3u8',
+    'headers' => '',
+    'issethead' => '',
+    'id' => 'bjm3u8',
+  ),
   'slm3u8' => 
   array (
     'status' => '1',
@@ -21,7 +55,7 @@ return array (
   array (
     'status' => '1',
     'from' => 'qq',
-    'show' => '解析2',
+    'show' => '解析1',
     'des' => '支持手机电脑在线播放',
     'ps' => '1',
     'parse' => 'https://jx.xmflv.com/?url=',
@@ -112,19 +146,19 @@ return array (
     'tip' => '无需安装任何插件',
     'id' => 'rym3u8',
   ),
-  'bjyun' => 
-  array (
-    'status' => '1',
-    'from' => 'subm3u8',
-    'show' => '解析1',
-    'des' => '支持手机电脑在线播放',
-    'target' => '_self',
-    'ps' => '0',
-    'parse' => 'https://jx.xmflv.com/?url=',
-    'sort' => '1000',
-    'tip' => '无需安装任何插件',
-    'id' => 'subm3u8',
-  ),
+  // 'bjyun' => 
+  // array (
+  //   'status' => '1',
+  //   'from' => 'subm3u8',
+  //   'show' => '解析1',
+  //   'des' => '支持手机电脑在线播放',
+  //   'target' => '_self',
+  //   'ps' => '0',
+  //   'parse' => 'https://jx.xmflv.com/?url=',
+  //   'sort' => '1000',
+  //   'tip' => '无需安装任何插件',
+  //   'id' => 'subm3u8',
+  // ),
   'yym3u8' => 
   array (
     'status' => '1',
