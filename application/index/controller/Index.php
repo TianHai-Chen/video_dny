@@ -11,7 +11,7 @@ class Index extends Base
     public function index()
     {
 
-        // return $this->label_fetch('index/index');
+        return $this->label_fetch('index/index');
     }
 
     public function test()
