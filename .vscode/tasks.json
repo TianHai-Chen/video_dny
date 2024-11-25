@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "自动上传到服务器",
+            "type": "shell",
+            "command": "git add .; git commit -m 'Auto upload'; git push origin main;ssh -i ~/.ssh/ceshi root@23.249.29.117 'cd /www/wwwroot/newsVideo/video; git pull origin main'",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}
