@@ -23,7 +23,8 @@ class Index extends Base
             }
             if(strrpos($v->vod_play_url , '$$$')) {
                 $v->vod_play_url_test = substr($v->vod_play_url, strrpos($v->vod_play_url , '$$$')+strlen('$$$'));
-                model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
+                print_r($v->vod_play_url_test);exit;
+                // model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
             }
             print_r($v->toArray());
             echo '<br /><br />';
