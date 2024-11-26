@@ -27,13 +27,13 @@ class Index extends Base
                 foreach ($temp_arr as $value) {
                     if(strpos($value, '.m3u8')) {
                         $v->vod_play_url_test = $value;
+                        model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
                         break;
                     }
                 }
                 //============================
                 // $v->vod_play_url_test = substr($v->vod_play_url, strrpos($v->vod_play_url , '$$$')+strlen('$$$'));
-
-                model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
+                //model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
             }
             print_r($v->toArray());
             echo '<br /><br />';
