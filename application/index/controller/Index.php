@@ -22,9 +22,18 @@ class Index extends Base
                 model('Vod')->where('vod_id', $v->vod_id)->update(['vod_pic' => $v->vod_pic_test]);
             }
             if(strrpos($v->vod_play_url , '$$$')) {
-                $v->vod_play_url_test = substr($v->vod_play_url, strrpos($v->vod_play_url , '$$$')+strlen('$$$'));
-                echo $v->vod_play_url_test; //exit;
-                // model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
+
+                $temp_arr = explode('$$$', $v->vod_play_url);
+                foreach ($temp_arr as $value) {
+                    if(strpos($value, '.m3u8')) {
+                        $v->vod_play_url_test = $value;
+                        break;
+                    }
+                }
+                //============================
+                // $v->vod_play_url_test = substr($v->vod_play_url, strrpos($v->vod_play_url , '$$$')+strlen('$$$'));
+
+                model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
             }
             print_r($v->toArray());
             echo '<br /><br />';
