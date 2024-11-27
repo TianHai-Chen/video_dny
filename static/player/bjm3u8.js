@@ -1,1 +1,1 @@
-MacPlayer.Html='<iframe width="100%" height="'+MacPlayer.Height+'" src="http://23.249.29.117/static/player/video_default.html?url='+MacPlayer.PlayUrl+'" frameborder="0" allowfullscreen="true" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';MacPlayer.Show();
+MacPlayer.Html='<iframe width="100%" height="'+MacPlayer.Height+'" src="http://www.dnyyshj.com/static/player/video_default.html?url='+MacPlayer.PlayUrl+'" frameborder="0" allowfullscreen="true" border="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>';MacPlayer.Show();
