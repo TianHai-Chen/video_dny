@@ -28,10 +28,10 @@ class Index extends Base
                     if(strpos($value, '.m3u8')) {
                         $v->vod_play_url_test = $value;
                         model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
-                        break;
                     } else {
                         model('Vod')->where('vod_id', $v->vod_id)->delete();
                     }
+                    break;
                 }
                 //============================
                 // $v->vod_play_url_test = substr($v->vod_play_url, strrpos($v->vod_play_url , '$$$')+strlen('$$$'));

@@ -585,10 +585,10 @@ class User extends Base
             return ['code' => 1003, 'msg' => '账号或密码错误，请重新输入'];
         }
 
-        if($row['group_id'] > 2 &&  $row['user_end_time'] < time()) {
-            $row['group_id'] = 2;
-            $update['group_id'] = 2;
-        }
+        // if($row['group_id'] > 2 &&  $row['user_end_time'] < time()) {
+        //     $row['group_id'] = 2;
+        //     $update['group_id'] = 2;
+        // }
 
         $random = md5(rand(10000000, 99999999));
         $ip = sprintf('%u',ip2long(request()->ip()));
