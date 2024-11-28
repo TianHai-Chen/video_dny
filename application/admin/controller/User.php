@@ -219,10 +219,10 @@ class User extends Base
     public function grant() {
         $data = model('Plog')->where(['plog_type' => 99])->select();
         foreach ($data as $v) {
-            model('User')->where('user_id',$v['user_id'])->setInc('user_points', $v['plog_points']);
             $data['plog_id'] = $v['plog_id'];
             $data['plog_type'] = 4;
             model('Plog')->saveData($data);
+            model('User')->where('user_id',$v['user_id'])->setInc('user_points', $v['plog_points']);
         }
         return $this->success("操作成功");
     }
