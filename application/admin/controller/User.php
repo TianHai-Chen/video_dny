@@ -216,6 +216,42 @@ class User extends Base
         return $this->error('参数错误');
     }
 
+    public function level_pass()
+    {
+        $param = input();
+        $id = $param['id'];
+
+        if(!empty($id)){
+            $where=[];
+            $where['user_id'] = ['eq',$id];
+            print_r(model('Group')->where('group', 11)->value('group_points_permanent'));exit;
+            $res = model('User')->where($where)->update(['group_id' => 11, 'is_level' => 2]);
+            model('User')->new_reward($id, model('Group')->where('group', 11)->value('group_points_permanent'));
+
+            if($res['code']===false){
+                return $this->error("操作失败");
+            }
+            return $this->success("操作成功");
+        }
+        return $this->error('参数错误');
+    }
+    public function level_refuse()
+    {
+        $param = input();
+        $ids = $param['ids'];
+
+        if(!empty($ids)){
+            $where=[];
+            $where['user_id'] = ['in',$ids];
+            $res = model('User')->delData($where);
+            if($res['code']>1){
+                return $this->error($res['msg']);
+            }
+            return $this->success($res['msg']);
+        }
+        return $this->error('参数错误');
+    }
+
     public function field()
     {
         $param = input();

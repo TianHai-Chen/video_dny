@@ -42,7 +42,7 @@
                 <th width="100">编号</th>
                 <th >名称</th>
                 <th width="100">会员组</th>
-                <th width="100">会员审核</th>
+                <th width="100">黑钻会员审核</th>
                 <th width="80">状态</th>
                 <th width="80">仙豆</th>
                 <th width="130">上次登录时间</th>
@@ -64,9 +64,9 @@
                 </td>
                 <td>
                     {if $vo.is_level == 1}
-                    <a class="layui-badge-rim j-iframe" data-href="{:url('info?id='.$vo['user_id'])}" href="javascript:;" title="编辑">同意</a>
-                    <a class="layui-badge-rim j-tr-del" data-href="{:url('del?ids='.$vo['user_id'])}" href="javascript:;" title="删除">拒绝</a>
-                    {/else}
+                    <a class="layui-badge-rim j-iframe" data-href="{:url('level_pass?id='.$vo['user_id'])}" href="javascript:;" title="通过">通过</a>
+                    <a class="layui-badge-rim j-tr-del" data-href="{:url('level_refuse?id='.$vo['user_id'])}" href="javascript:;" title="拒绝">拒绝</a>
+                    {else}
                     已通过
                     {/if}
                 </td>
