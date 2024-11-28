@@ -297,6 +297,46 @@ layui.define(['element', 'form'], function(exports) {
         });
         return false;
     });
+    /* TR数据行通过 */
+    $('.j-tr-pass').click(function() {
+        var that = $(this),
+            href = !that.attr('data-href') ? that.attr('href') : that.attr('data-href');
+        layer.confirm('通过之后无法恢复，您确定要通过吗？', {title:false, closeBtn:0}, function(index){
+            if (!href) {
+                layer.msg('请设置data-href参数');
+                return false;
+            }
+            $.get(href, function(res){
+                layer.msg(res.msg);
+                if (res.code == 1) {
+                    that.parents('tr').remove();
+                    that.parents('.tr').remove();
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    });
+    /* TR数据行拒绝 */
+    $('.j-tr-refuse').click(function() {
+        var that = $(this),
+            href = !that.attr('data-href') ? that.attr('href') : that.attr('data-href');
+        layer.confirm('拒绝之后无法恢复，您确定要拒绝吗？', {title:false, closeBtn:0}, function(index){
+            if (!href) {
+                layer.msg('请设置data-href参数');
+                return false;
+            }
+            $.get(href, function(res){
+                layer.msg(res.msg);
+                if (res.code == 1) {
+                    that.parents('tr').remove();
+                    that.parents('.tr').remove();
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    });
 
     /* ajax请求操作 */
     $(document).on('click', '.j-ajax', function() {

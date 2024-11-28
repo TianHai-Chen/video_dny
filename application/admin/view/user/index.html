@@ -64,10 +64,12 @@
                 </td>
                 <td>
                     {if $vo.is_level == 1}
-                    <a class="layui-badge-rim j-tr-del" data-href="{:url('level_pass?id='.$vo['user_id'])}" href="javascript:;" title="通过">通过</a>
-                    <a class="layui-badge-rim j-tr-del" data-href="{:url('level_refuse?id='.$vo['user_id'])}" href="javascript:;" title="拒绝">拒绝</a>
+                    <a class="layui-badge-rim j-tr-pass" data-href="{:url('level_pass?id='.$vo['user_id'])}" href="javascript:;" title="通过">通过</a>
+                    <a class="layui-badge-rim j-tr-refuse" data-href="{:url('level_refuse?id='.$vo['user_id'])}" href="javascript:;" title="拒绝">拒绝</a>
                     {elseif $vo.is_level == 2}
                     已通过
+                    {elseif $vo.is_level == 3}
+                    已拒绝
                     {else}
                     待申请
                     {/if}

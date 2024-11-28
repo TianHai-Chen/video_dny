@@ -237,16 +237,35 @@ class User extends Base
     public function level_refuse()
     {
         $param = input();
-        $ids = $param['ids'];
+        $id = $param['id'];
 
-        if(!empty($ids)){
+        if(!empty($id)){
             $where=[];
-            $where['user_id'] = ['in',$ids];
-            $res = model('User')->delData($where);
-            if($res['code']>1){
-                return $this->error($res['msg']);
+            $where['user_id'] = ['eq',$id];
+            $data = [];
+            $data['user_end_time'] = 0;
+            $data['is_level'] = 3;
+            $res = model('User')->where($where)->update($data);
+            if($res===false){
+                return ['code'=>1009,'msg'=>'操作失败'];
             }
-            return $this->success($res['msg']);
+            $group_points_permanent = model('Group')->where('group', 11)->value('group_points_permanent');
+            $user_points_res = model('User')->where($where)->setInc('user_points', $group_points_permanent);
+            if($user_points_res) {
+                //仙豆日志
+                $data = [];
+                $data['user_id'] = $id;
+                $data['plog_type'] = 6;
+                $data['plog_points'] = $group_points_permanent;
+                $data['plog_remarks'] = "申请黑钻会员被拒绝，返回".$group_points_permanent."仙豆";
+                model('Plog')->saveData($data);
+            }
+            
+
+            if($res['code']===false){
+                return $this->error("操作失败");
+            }
+            return $this->success("操作成功");
         }
         return $this->error('参数错误');
     }
