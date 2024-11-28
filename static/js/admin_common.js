@@ -308,8 +308,12 @@ layui.define(['element', 'form'], function(exports) {
                 return false;
             }
             $.get(href, function(res){
-                layer.msg(res.msg);
-                location.reload();
+                layer.msg(res.msg, {
+                    time: 2000 // 设置弹窗显示时间，单位为毫秒（这里是2秒）
+                }, function() {
+                    // 回调函数，在弹窗消失后执行
+                    location.reload();
+                });
             });
             layer.close(index);
         });
@@ -325,8 +329,12 @@ layui.define(['element', 'form'], function(exports) {
                 return false;
             }
             $.get(href, function(res){
-                layer.msg(res.msg);
-                location.reload();
+                layer.msg(res.msg, {
+                    time: 2000 // 设置弹窗显示时间，单位为毫秒（这里是2秒）
+                }, function() {
+                    // 回调函数，在弹窗消失后执行
+                    location.reload();
+                });
             });
             layer.close(index);
         });
