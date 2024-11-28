@@ -938,6 +938,12 @@ class User extends Base
         return $this->fetch('user/user_plog');
     }
 
+    public function junior()
+    {
+        
+        return $this->fetch('user/junior');
+    }
+
     public function order_info()
     {
         $param = input();
