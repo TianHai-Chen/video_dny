@@ -221,7 +221,8 @@ class User extends Base
         foreach ($data as $v) {
             $data['plog_id'] = $v['plog_id'];
             $data['plog_type'] = 4;
-            model('Plog')->saveData($data);
+            $res = model('Plog')->saveData($data);
+            print_r($res);exit;
             model('User')->where('user_id',$v['user_id'])->setInc('user_points', $v['plog_points']);
         }
         return $this->success("操作成功");
