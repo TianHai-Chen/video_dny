@@ -969,9 +969,9 @@ class User extends Base
         }
 
         $order='user_id desc';
-        $res = model('User')->listData($where,$order,$param['page'],$param['limit']);
+        $res = model('User')->listData($where,$order,$param['page'],$param['limit'],"user_id,user_nick_name,group_id,user_pid,user_pid_2,user_reg_time");
         
-        print_r($res['list']);exit;
+        // print_r($res['list']);exit;
         $this->assign('list',$res['list']);
         $this->assign('total',$res['total']);
         $this->assign('page',$res['page']);
