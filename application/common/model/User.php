@@ -893,8 +893,9 @@ class User extends Base
             $data['plog_type'] = 99;
             $data['plog_points'] = $sum_points_2;
             $data['plog_remarks'] = '用户【'.$cur_user['user_id'].'、'.$cur_user['user_name'].'】使用'.$val.'仙豆，获得奖励'.$sum_points_2.'仙豆';
-            print_r($data);exit;
-            model('Plog')->saveData($data);
+            $res = model('Plog')->saveData($data);
+            
+            print_r($res);exit;
             
             // model('User')->where('user_id',$user_pid_2)->setInc('user_points',$sum_points_2);
         }
