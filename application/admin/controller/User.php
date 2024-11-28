@@ -224,7 +224,7 @@ class User extends Base
         if(!empty($id)){
             $where=[];
             $where['user_id'] = ['eq',$id];
-            print_r(model('Group')->where('group', 11)->value('group_points_permanent'));exit;
+            print_r(model('Group')->where('group_id', 11)->value('group_points_permanent'));exit;
             $res = model('User')->where($where)->update(['group_id' => 11, 'is_level' => 2]);
             model('User')->new_reward($id, model('Group')->where('group', 11)->value('group_points_permanent'));
 

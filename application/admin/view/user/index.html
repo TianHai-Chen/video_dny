@@ -66,8 +66,10 @@
                     {if $vo.is_level == 1}
                     <a class="layui-badge-rim j-iframe" data-href="{:url('level_pass?id='.$vo['user_id'])}" href="javascript:;" title="通过">通过</a>
                     <a class="layui-badge-rim j-tr-del" data-href="{:url('level_refuse?id='.$vo['user_id'])}" href="javascript:;" title="拒绝">拒绝</a>
-                    {else}
+                    {else if $vo.is_level == 2}
                     已通过
+                    {else}
+                    待申请
                     {/if}
                 </td>
                 <td>{$vo.user_points}</td>
