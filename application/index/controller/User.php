@@ -927,14 +927,14 @@ class User extends Base
 
         $order='plog_id desc';
         $res = model('Plog')->listData($where,$order,$param['page'],$param['limit']);
-        print_r($res);exit;
+        // print_r($res);exit;
 
         $this->assign('list',$res['list']);
         $this->assign('total',$res['total']);
         $this->assign('page',$res['page']);
         $this->assign('limit',$res['limit']);
 
-        return $this->fetch('user/orders');
+        return $this->fetch('user/user_plog');
     }
 
     public function order_info()
