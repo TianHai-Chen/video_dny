@@ -288,16 +288,12 @@ layui.define(['element', 'form'], function(exports) {
             }
             $.get(href, function(res){
                 layer.msg(res.msg);
-                if (res.code == 1) {
-                    that.parents('tr').remove();
-                    that.parents('.tr').remove();
-                }
             });
             layer.close(index);
         });
         return false;
     });
-    
+
     /* TR数据行通过 */
     $('.j-tr-pass').click(function() {
         var that = $(this),
@@ -309,10 +305,6 @@ layui.define(['element', 'form'], function(exports) {
             }
             $.get(href, function(res){
                 layer.msg(res.msg);
-                if (res.code == 1) {
-                    that.parents('tr').remove();
-                    that.parents('.tr').remove();
-                }
             });
             layer.close(index);
         });
