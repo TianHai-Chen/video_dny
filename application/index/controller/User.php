@@ -919,6 +919,7 @@ class User extends Base
         $param['limit'] = intval($param['limit']) < 20 ? 20 : intval($param['limit']);
         $where=[];
         $where['user_id'] = $GLOBALS['user']['user_id'];
+        $where['plog_type'] = ['neq', 99];
         // if(!empty($param['type'])){
         //     $where['plog_type'] = ['eq',$param['type']];
         // }
