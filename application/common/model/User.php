@@ -890,12 +890,12 @@ class User extends Base
 
             $data = [];
             $data['user_id'] =$cur_user['user_pid_2'];
-            $data['plog_type'] = 99;
+            $data['plog_type'] = 4;
             $data['plog_points'] = $sum_points_2;
             $data['plog_remarks'] = '用户【'.$cur_user['user_id'].'、'.$cur_user['user_name'].'】使用'.$val.'仙豆，获得奖励'.$sum_points_2.'仙豆';
             model('Plog')->saveData($data);
             
-            // model('User')->where('user_id',$user_pid_2)->setInc('user_points',$sum_points_2);
+            model('User')->where('user_id',$user_pid_2)->setInc('user_points',$sum_points_2);
         }
         
         $user_pid_3 = $cur_user['user_pid_3'];
@@ -910,12 +910,12 @@ class User extends Base
 
             $data = [];
             $data['user_id'] =$cur_user['user_pid_3'];
-            $data['plog_type'] = 99;
+            $data['plog_type'] = 4;
             $data['plog_points'] = $sum_points_3;
             $data['plog_remarks'] = '用户【'.$cur_user['user_id'].'、'.$cur_user['user_name'].'】使用'.$val.'仙豆，获得奖励'.$sum_points_3.'仙豆';
             model('Plog')->saveData($data);
             
-            // model('User')->where('user_id',$user_pid_3)->setInc('user_points',$sum_points_3);
+            model('User')->where('user_id',$user_pid_3)->setInc('user_points',$sum_points_3);
         }
     }    
 
