@@ -2035,3 +2035,10 @@ function getUserVideoTimes($userId){
 
     return $data['leave_times']>=0?$data['leave_times']:0;
 }
+
+/**
+ * 会员分类
+ */
+function getLevelName($group_id) {
+    return model('Group')->where('group_id', $group_id)->value('group_name');
+}

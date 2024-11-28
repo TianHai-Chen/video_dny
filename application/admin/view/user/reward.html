@@ -54,7 +54,7 @@
                 <td><input type="checkbox" name="ids[]" value="{$vo.user_id}" class="layui-checkbox checkbox-ids" lay-skin="primary"></td>
                 <td>{$vo.user_id}</td>
                 <td>{$vo.user_name}</td>
-                <td>{$vo.group_name}</td>
+                <td>{$vo.group_id|getLevelName}</td>
                 <td>{if condition="$vo['user_status'] eq 1"}<span class="layui-badge layui-bg-green">正常</span>{else/}<span class="layui-badge">关闭</span>{/if}</td>
                 <td>{if condition="$vo['user_pid'] eq $param['uid']"}一级分销{elseif condition="$vo['user_pid_2'] eq $param['uid']"}二级分销{else/}三级分销{/if}</td>
                 <td>{$vo.user_reg_time|mac_day=color}</td>
