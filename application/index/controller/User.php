@@ -911,6 +911,32 @@ class User extends Base
         return $this->fetch('user/orders');
     }
 
+    public function user_plog()
+    {
+        $param = input();
+        $param['page'] = intval($param['page']) < 1 ? 1 : intval($param['page']);
+        $param['limit'] = intval($param['limit']) < 20 ? 20 : intval($param['limit']);
+        $where=[];
+        $where['o.user_id'] = $GLOBALS['user']['user_id'];
+        // if(!empty($param['type'])){
+        //     $where['plog_type'] = ['eq',$param['type']];
+        // }
+        // if(!empty($param['uid'])){
+        //     $where['user_id'] = ['eq',$param['uid'] ];
+        // }
+
+        $order='plog_id desc';
+        $res = model('Plog')->listData($where,$order,$param['page'],$param['limit']);
+        print_r($res);exit;
+
+        $this->assign('list',$res['list']);
+        $this->assign('total',$res['total']);
+        $this->assign('page',$res['page']);
+        $this->assign('limit',$res['limit']);
+
+        return $this->fetch('user/orders');
+    }
+
     public function order_info()
     {
         $param = input();
