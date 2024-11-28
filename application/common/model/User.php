@@ -811,6 +811,12 @@ class User extends Base
         $data['user_end_time'] = $end_time;
         $data['group_id'] = $group_id;
 
+        if($group_id == 11) {
+            if($GLOBALS['user']['is_level'] == 1) return ['code'=>1005,'msg'=>'您已经申请此等级，请等待审核..'];
+            $data['is_level'] = 1;
+            $data['group_id'] = $GLOBALS['user']['group_id'];
+        }
+
         $db = Db::connect();
         try {
             $db->startTrans();
@@ -828,6 +834,10 @@ class User extends Base
             //原 - 分销日志
            //$this->reward($point);
     
+            if($group_id == 11) {
+                return ['code'=>1,'msg'=>'申请成功，等待审核'];
+            }
+
            //新分销
            $this->new_reward($GLOBALS['user']['user_id'], $point);
     
