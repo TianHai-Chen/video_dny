@@ -77,7 +77,7 @@ class Plog extends Base {
             return ['code'=>1001,'msg'=>'参数错误：'.$validate->getError() ];
         }
 
-        if($data['user_id']==0 || !in_array($data['plog_type'],['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15']) ) {
+        if($data['user_id']==0 || !in_array($data['plog_type'],['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','99']) ) {
             return ['code'=>1002,'msg'=>'参数非法'];
         }
 
