@@ -854,7 +854,7 @@ class User extends Base
 
     public function new_reward($user_id, $val) {
         $cur_user = model('User')
-                    ->where('user_id', $GLOBALS['user']['user_id'])
+                    ->where('user_id', $user_id) //$GLOBALS['user']['user_id']
                     ->field('user_id,user_name,group_id,user_pid,user_pid_2,user_pid_3')
                     ->find();
             
