@@ -42,6 +42,7 @@
                 <th width="100">编号</th>
                 <th >名称</th>
                 <th width="100">会员组</th>
+                <th width="100">会员审核</th>
                 <th width="80">状态</th>
                 <th width="80">仙豆</th>
                 <th width="130">上次登录时间</th>
@@ -60,6 +61,14 @@
                 <td>{$vo.group_name}</td>
                 <td>
                     <input type="checkbox" name="status" {if condition="$vo['user_status'] eq 1"}checked{/if} value="{$vo['user_status']}" lay-skin="switch" lay-filter="switchStatus" lay-text="正常|关闭" data-href="{:url('field?col=user_status&ids='.$vo['user_id'])}">
+                </td>
+                <td>
+                    {if $vo.is_level == 1}
+                    <a class="layui-badge-rim j-iframe" data-href="{:url('info?id='.$vo['user_id'])}" href="javascript:;" title="编辑">同意</a>
+                    <a class="layui-badge-rim j-tr-del" data-href="{:url('del?ids='.$vo['user_id'])}" href="javascript:;" title="删除">拒绝</a>
+                    {/else}
+                    已通过
+                    {/if}
                 </td>
                 <td>{$vo.user_points}</td>
                 <td>{$vo.user_login_time|mac_day=color}</td>
