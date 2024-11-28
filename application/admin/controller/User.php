@@ -216,6 +216,11 @@ class User extends Base
         return $this->error('参数错误');
     }
 
+    public function grant() {
+        $data = model('Plog')->listData(['plog_type' => 99], '');
+        print_r($data);exit;
+    }
+
     public function level_pass()
     {
         $param = input();
