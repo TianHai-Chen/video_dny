@@ -620,6 +620,7 @@ class User extends Base
         if (Request()->isPost()) {
             $data = [];
             if(empty($param['num']) || empty($param['account']) || empty($param['realname'])) return json(['code'=>10003,'msg'=>'请填写完整']);
+            if($param['num'] < 1000 || $param['num']%1000 != 0) return json(['code'=>10003,'msg'=>'只能整千提现']);
             $data['user_id'] = $GLOBALS['user']['user_id'];
             $data['num'] = intval($param['num']);
             model('User')->where('user_id',$GLOBALS['user']['user_id'])->setInc('user_points', -$data['num']);
