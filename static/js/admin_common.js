@@ -309,6 +309,7 @@ layui.define(['element', 'form'], function(exports) {
             }
             $.get(href, function(res){
                 layer.msg(res.msg);
+                location.reload();
             });
             layer.close(index);
         });
@@ -325,6 +326,7 @@ layui.define(['element', 'form'], function(exports) {
             }
             $.get(href, function(res){
                 layer.msg(res.msg);
+                location.reload();
             });
             layer.close(index);
         });

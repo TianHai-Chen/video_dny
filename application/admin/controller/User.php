@@ -225,7 +225,7 @@ class User extends Base
             $where=[];
             $where['user_id'] = ['eq',$id];
             $res = model('User')->where($where)->update(['group_id' => 11, 'is_level' => 2]);
-            model('User')->new_reward($id, model('Group')->where('group', 11)->value('group_points_permanent'));
+            model('User')->new_reward($id, model('Group')->where('group_id', 11)->value('group_points_permanent'));
 
             if($res['code']===false){
                 return $this->error("操作失败");
@@ -249,7 +249,7 @@ class User extends Base
             if($res===false){
                 return ['code'=>1009,'msg'=>'操作失败'];
             }
-            $group_points_permanent = model('Group')->where('group', 11)->value('group_points_permanent');
+            $group_points_permanent = model('Group')->where('group_id', 11)->value('group_points_permanent');
             $user_points_res = model('User')->where($where)->setInc('user_points', $group_points_permanent);
             if($user_points_res) {
                 //仙豆日志
