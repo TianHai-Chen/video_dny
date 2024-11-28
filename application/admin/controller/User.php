@@ -217,8 +217,14 @@ class User extends Base
     }
 
     public function grant() {
-        $data = model('Plog')->listData(['plog_type' => 99], '');
-        print_r($data);exit;
+        $data = model('Plog')->where(['plog_type' => 99])->select();
+        foreach ($data as $v) {
+            model('User')->where('user_id',$v['user_id'])->setInc('user_points', $v['plog_points']);
+            $data['plog_id'] = $v['plog_id'];
+            $data['plog_type'] = 4;
+            model('Plog')->saveData($data);
+        }
+        return $this->success("操作成功");
     }
 
     public function level_pass()
