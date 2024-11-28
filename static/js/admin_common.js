@@ -340,6 +340,27 @@ layui.define(['element', 'form'], function(exports) {
         });
         return false;
     });
+    /* TR数据行发放 */
+    $('.j-tr-grant').click(function() {
+        var that = $(this),
+            href = !that.attr('data-href') ? that.attr('href') : that.attr('data-href');
+        layer.confirm('发放之后无法恢复，您确定要发放吗？', {title:false, closeBtn:0}, function(index){
+            if (!href) {
+                layer.msg('请设置data-href参数');
+                return false;
+            }
+            $.get(href, function(res){
+                layer.msg(res.msg, {
+                    time: 2000 // 设置弹窗显示时间，单位为毫秒（这里是2秒）
+                }, function() {
+                    // 回调函数，在弹窗消失后执行
+                    location.reload();
+                });
+            });
+            layer.close(index);
+        });
+        return false;
+    });
 
     /* ajax请求操作 */
     $(document).on('click', '.j-ajax', function() {
