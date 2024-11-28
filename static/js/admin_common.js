@@ -297,6 +297,7 @@ layui.define(['element', 'form'], function(exports) {
         });
         return false;
     });
+    
     /* TR数据行通过 */
     $('.j-tr-pass').click(function() {
         var that = $(this),
