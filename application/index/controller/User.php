@@ -940,7 +940,47 @@ class User extends Base
 
     public function junior()
     {
+        $param = input();
+        $param['page'] = intval($param['page']) <1 ? 1 : $param['page'];
+        $param['limit'] = intval($param['limit']) < 20 ? 20 : intval($param['limit']);
+
+        $param['uid'] = intval($GLOBALS['user']['user_id']);
+
+        $where=[];
+
+        if(!empty($param['level'])){
+            if($param['level']=='1'){
+                $where['user_pid'] = ['eq', $param['uid']];
+            }
+            elseif($param['level']=='2'){
+                $where['user_pid_2'] = ['eq', $param['uid']];
+            }
+            elseif($param['level']=='3'){
+                $where['user_pid_3'] = ['eq', $param['uid']];
+            }
+        }
+        else{
+            $where['user_pid|user_pid_2|user_pid_3'] = ['eq', intval($param['uid']) ];
+        }
+
+        if(!empty($param['wd'])){
+            $param['wd'] = urldecode($param['wd']);
+            $where['user_name'] = ['like','%'.$param['wd'].'%'];
+        }
+
+        $order='user_id desc';
+        $res = model('User')->listData($where,$order,$param['page'],$param['limit']);
         
+        print_r($res['list']);exit;
+        $this->assign('list',$res['list']);
+        $this->assign('total',$res['total']);
+        $this->assign('page',$res['page']);
+        $this->assign('limit',$res['limit']);
+
+        $param['page'] = '{page}';
+        $param['limit'] = '{limit}';
+        $this->assign('param',$param);
+
         return $this->fetch('user/junior');
     }
 
