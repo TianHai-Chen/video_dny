@@ -24,7 +24,7 @@ class Index extends Base
             if(strrpos($v->vod_play_url , '$$$') !== false) {
                 $temp_arr = explode('$$$', $v->vod_play_url);
                 foreach ($temp_arr as $value) {
-                    if(strpos($value, '.m3u8')) {
+                    if(strpos($value, '.m3u8') || strpos($value, '.mp4')) {
                         $v->vod_play_url_test = $value;
                         model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
                     } else {
