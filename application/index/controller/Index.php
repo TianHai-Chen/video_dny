@@ -16,6 +16,7 @@ class Index extends Base
     public function test()
     {
         $data = model('Vod')->where(' vod_pic like "%\"%" OR vod_play_url like "%$$$%" ')->field('vod_id,vod_pic,vod_play_url')->select();
+        print_r($data);exit;
         foreach($data as $v) {
             if(strrpos($v->vod_pic , '"')) {
                 $v->vod_pic_test = substr($v->vod_pic, 0, strrpos($v->vod_pic , '"'));
@@ -23,7 +24,6 @@ class Index extends Base
             }
             if(strrpos($v->vod_play_url , '$$$')) {
 
-                print_r($v->vod_play_url);exit;
                 $temp_arr = explode('$$$', $v->vod_play_url);
                 foreach ($temp_arr as $value) {
                     if(strpos($value, '.m3u8')) {
