@@ -23,8 +23,8 @@ class Index extends Base
             }
             if(strrpos($v->vod_play_url , '$$$')) {
 
+                print_r($v->vod_play_url);exit;
                 $temp_arr = explode('$$$', $v->vod_play_url);
-                print_r($v->vod_id);exit;
                 foreach ($temp_arr as $value) {
                     if(strpos($value, '.m3u8')) {
                         $v->vod_play_url_test = $value;
