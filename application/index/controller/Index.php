@@ -29,6 +29,7 @@ class Index extends Base
                         $v->vod_play_url_test = $value;
                         model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
                     } else {
+                        print_r($v->vod_id);exit;
                         model('Vod')->where('vod_id', $v->vod_id)->delete();
                     }
                     break;
