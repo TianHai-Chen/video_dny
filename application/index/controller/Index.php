@@ -24,12 +24,12 @@ class Index extends Base
             if(strrpos($v->vod_play_url , '$$$')) {
 
                 $temp_arr = explode('$$$', $v->vod_play_url);
+                print_r($v->vod_id);exit;
                 foreach ($temp_arr as $value) {
                     if(strpos($value, '.m3u8')) {
                         $v->vod_play_url_test = $value;
                         model('Vod')->where('vod_id', $v->vod_id)->update(['vod_play_url' => $v->vod_play_url_test]);
                     } else {
-                        print_r($v->vod_id);exit;
                         model('Vod')->where('vod_id', $v->vod_id)->delete();
                     }
                     break;
