@@ -13,12 +13,13 @@ class Shayu {
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
 
         $res = th_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
-        
-        if($res['code']==200){
+        $res = json_decode($res);
 
-            return $res;
+        if($res['code']==200 && !empty($res['data']['payUrl'])){
+            echo "window.location.href = '{$res['data']['payUrl']}';";
+            // return $res;
         }
-        return false;
+        return 'error';
 
         // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
         // while (list ($key, $val) = each ($data)) {
