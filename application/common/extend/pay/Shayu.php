@@ -46,12 +46,11 @@ class Shayu {
     {
         $param = input();
 
-        $isSign = true;//$this->getSignVeryfy($param, $param["sign"]);
         //验证成功
         if($param['status'] == 'ok') {
             $res = model('Order')->notify($param['orderId'],'Shayu');
             if($res['code'] == 1) {
-                return "success";
+                return "ok";
             } else {
                 return "fail";
             }
