@@ -13,15 +13,25 @@ class Shayu {
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
         // print_r($data);exit;
 
-        $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
-        while (list ($key, $val) = each ($data)) {
-            $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
+        $res = mac_curl_post('https://api.mch.weixin.qq.com/pay/unifiedorder', $data);
+        $res = mac_xml2array($res);
+
+        if($res['code']==500){
+            print_r($res);exit;
+
+            return $res;
         }
-        //submit按钮控件请不要含有name属性
-        $sHtml = $sHtml."<input type='submit' value='正在提交'></form>";
-        $sHtml = $sHtml."<script>document.forms['shayusubmit'].submit();</script>";
-        echo $sHtml;
-        die;
+        return false;
+
+        // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
+        // while (list ($key, $val) = each ($data)) {
+        //     $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
+        // }
+        // //submit按钮控件请不要含有name属性
+        // $sHtml = $sHtml."<input type='submit' value='正在提交'></form>";
+        // $sHtml = $sHtml."<script>document.forms['shayusubmit'].submit();</script>";
+        // echo $sHtml;
+        // die;
     }
 
     public function sign($data, $signkey){
