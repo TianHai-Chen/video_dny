@@ -239,6 +239,8 @@ return array (
     'shayu' => 
     array (
       'appid' => '1000',
+      'merchant_id' => '10005',
+      'channel_type' => '6666',
       'appkey' => '3f7295765d7c087bf6ba330d0b56e232',
       'apiurl' => ' http://baiyuan.skyblue98.com/api/newOrder',
       'type' => '2',
