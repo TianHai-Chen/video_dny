@@ -11,27 +11,27 @@ class Shayu {
         $data['channelType'] = $GLOBALS['config']['pay']['shayu']['channel_type'];
         $data['notifyUrl'] = $GLOBALS['http_type'] . $_SERVER['HTTP_HOST'] . '/index.php/payment/notify/pay_type/shayu';
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
-        // print_r($data);exit;
+        print_r($data);exit;
 
-        // $res = th_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
-        // // $res = mac_xml2array($res);
+        $res = th_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
+        // $res = mac_xml2array($res);
 
-        // var_dump($res);exit;
-        // if($res['code']==500){
+        var_dump($res);exit;
+        if($res['code']==500){
 
-        //     return $res;
-        // }
-        // return false;
-
-        $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
-        while (list ($key, $val) = each ($data)) {
-            $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
+            return $res;
         }
-        //submit按钮控件请不要含有name属性
-        $sHtml = $sHtml."<input type='submit' value='正在提交'></form>";
-        $sHtml = $sHtml."<script>document.forms['shayusubmit'].submit();</script>";
-        echo $sHtml;
-        die;
+        return false;
+
+        // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
+        // while (list ($key, $val) = each ($data)) {
+        //     $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
+        // }
+        // //submit按钮控件请不要含有name属性
+        // $sHtml = $sHtml."<input type='submit' value='正在提交'></form>";
+        // $sHtml = $sHtml."<script>document.forms['shayusubmit'].submit();</script>";
+        // echo $sHtml;
+        // die;
     }
 
     public function sign($data, $signkey){
