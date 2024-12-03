@@ -13,7 +13,7 @@ class Shayu {
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
 
         $res = th_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
-        $res = json_decode($res);
+        $res = json_decode($res,true);
 
         if($res['code']==200 && !empty($res['data']['payUrl'])){
             echo "window.location.href = '{$res['data']['payUrl']}';";
