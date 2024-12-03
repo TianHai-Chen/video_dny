@@ -469,12 +469,8 @@ function mac_curl_post($url,$data,$heads=array(),$cookie='')
     if(count($heads)>0){
         curl_setopt ($ch, CURLOPT_HTTPHEADER , $heads );
     }
-    $response = curl_exec($ch);
     $response = @curl_exec($ch);
-if (curl_errno($ch)) {
-    // 获取错误信息并输出
-    echo 'cURL error: ' . curl_error($ch);exit;
-}
+    var_dump(curl_error($ch));exit;
     if(curl_errno($ch)){//出错则显示错误信息
         //print curl_error($ch);
     }
