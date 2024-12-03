@@ -575,7 +575,7 @@ class User extends Base
         $this->assign('param',$param);
 
         $cp = 'app\\common\\extend\\pay\\' . ucfirst($payment);
-        print_r($cp);exit;
+        // print_r($cp);exit;
         if (class_exists($cp)) {
             $c = new $cp;
             $payment_res = $c->submit($this->user, $res['info'], $param);
