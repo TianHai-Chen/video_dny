@@ -470,6 +470,17 @@ function mac_curl_post($url,$data,$heads=array(),$cookie='')
         curl_setopt ($ch, CURLOPT_HTTPHEADER , $heads );
     }
     $response = @curl_exec($ch);
+    
+    if ($response === false) {
+        // 获取 cURL 错误
+        echo 'cURL error: ' . curl_error($ch);
+        // 获取 HTTP 状态码
+        $info = curl_getinfo($ch);
+        echo 'HTTP Status Code: ' . $info['http_code'];
+    } else {
+        echo 'Response: ' . $response;
+    }
+
     var_dump(curl_error($ch));exit;
     if(curl_errno($ch)){//出错则显示错误信息
         //print curl_error($ch);
