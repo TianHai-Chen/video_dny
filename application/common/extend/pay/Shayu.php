@@ -13,7 +13,7 @@ class Shayu {
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
         // print_r($data);exit;
 
-        $res = mac_curl_post('https://api.mch.weixin.qq.com/pay/unifiedorder', $data);
+        $res = mac_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
         $res = mac_xml2array($res);
 
         print_r($res);exit;
