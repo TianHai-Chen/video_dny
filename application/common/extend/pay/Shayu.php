@@ -16,11 +16,11 @@ class Shayu {
         $res = mac_curl_post('https://api.mch.weixin.qq.com/pay/unifiedorder', $data);
         $res = mac_xml2array($res);
 
+        print_r($res);exit;
         if($res['code']==500){
 
             return $res;
         }
-            print_r($res);exit;
         return false;
 
         // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
