@@ -17,10 +17,10 @@ class Shayu {
         $res = mac_xml2array($res);
 
         if($res['code']==500){
-            print_r($res);exit;
 
             return $res;
         }
+            print_r($res);exit;
         return false;
 
         // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
