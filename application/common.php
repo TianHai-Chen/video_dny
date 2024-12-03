@@ -455,6 +455,7 @@ function th_curl_post($url, $data) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // 获取返回的结果而不是直接输出
     curl_setopt($ch, CURLOPT_POST, true);  // 设置请求方法为POST
     curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));  // POST请求的数据，可以是数组，cURL会将其转换为URL编码的查询字符串
+    curl_setopt($ch, CURLOPT_VERBOSE, true);  // 启用调试模式
 
     // 执行cURL请求并获取响应
     $response = curl_exec($ch);
