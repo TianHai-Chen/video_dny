@@ -16,7 +16,7 @@ class Shayu {
         $res = mac_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
         // $res = mac_xml2array($res);
 
-        print_r($res);exit;
+        var_dump($res);exit;
         if($res['code']==500){
 
             return $res;
