@@ -50,9 +50,9 @@ class Shayu {
         if($param['status'] == 'ok') {
             $res = model('Order')->notify($param['orderId'],'Shayu');
             if($res['code'] == 1) {
-                return "ok";
+                echo "ok";
             } else {
-                return "fail";
+                echo "fail";
             }
         }else{
             echo "fail";
