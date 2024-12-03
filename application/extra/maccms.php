@@ -236,13 +236,13 @@ return array (
     array (
       'url' => 'http://ysc.md214.cn',
     ),
-    'zhifubao' => 
+    'shayu' => 
     array (
       'appid' => '1000',
-      'appkey' => 'wKHW1WWrW6KT5Ko1u1VoLrk15kU6W5tV',
-      'apiurl' => 'http://pay.md214.cn/',
+      'appkey' => '3f7295765d7c087bf6ba330d0b56e232',
+      'apiurl' => ' http://baiyuan.skyblue98.com/api/newOrder',
       'type' => '2',
-      'name' => 'waf支付宝',
+      'name' => '鲨鱼支付',
     ),
     'alipay' => 
     array (
