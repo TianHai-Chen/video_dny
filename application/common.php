@@ -459,9 +459,13 @@ function th_curl_post($url, $data) {
     // 执行cURL请求并获取响应
     $response = curl_exec($ch);
 
-    // 检查是否发生了错误
-    if (curl_errno($ch)) {
-        return 'cURL错误: ' . curl_error($ch);
+     // 检查是否发生了错误
+     if (curl_errno($ch)) {
+        // 获取详细错误信息
+        $error_msg = curl_error($ch);
+        $error_code = curl_errno($ch);
+        $info = curl_getinfo($ch);  // 获取cURL会话的信息
+        return 'cURL错误: ' . $error_msg . ' (错误代码: ' . $error_code . ') 详细信息: ' . print_r($info, true);
     }
     
     // 关闭cURL会话
