@@ -12,7 +12,7 @@ class Shayu {
         $data['notifyUrl'] = $GLOBALS['http_type'] . $_SERVER['HTTP_HOST'] . '/index.php/payment/notify/pay_type/shayu';
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
 
-        $res = th_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
+        $res = mac_curl_get($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
         // $res = mac_xml2array($res);
 
         var_dump($res);exit;
