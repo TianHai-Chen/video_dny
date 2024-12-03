@@ -11,7 +11,7 @@ class Shayu {
         $data['channelType'] = $GLOBALS['config']['pay']['shayu']['channel_type'];
         $data['notifyUrl'] = $GLOBALS['http_type'] . $_SERVER['HTTP_HOST'] . '/index.php/payment/notify/pay_type/shayu';
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
-        print_r($data);exit;
+        // print_r($data);exit;
 
         $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
         while (list ($key, $val) = each ($data)) {
