@@ -45,24 +45,15 @@ class Shayu {
     public function notify()
     {
         $param = input();
-        $GLOBALS['config']['pay'] = config('maccms.pay');
-        unset($param['/payment/notify/pay_type/shayu']);
-        unset($param['pay_type']);
 
         $isSign = true;//$this->getSignVeryfy($param, $param["sign"]);
         //验证成功
-        if($isSign) {
-            if ($param['trade_status'] == 'TRADE_SUCCESS') {
-                $res = model('Order')->notify($param['out_trade_no'],'alipay');
-                if($res['code']>1){
-                    echo "fail2";
-                }
-                else{
-                    echo "success2";
-                }
-            }
-            else {
-                echo "success";
+        if($param['status'] == 'ok') {
+            $res = model('Order')->notify($param['orderId'],'Shayu');
+            if($res['code'] == 1) {
+                return "success";
+            } else {
+                return "fail";
             }
         }else{
             echo "fail";
