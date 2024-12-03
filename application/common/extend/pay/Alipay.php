@@ -20,7 +20,6 @@ class Alipay {
         $data['return_url'] = $GLOBALS['http_type'] . $_SERVER['HTTP_HOST'] . '/index.php/payment/notify/pay_type/alipay';
         $data['subject'] = '仙豆充值（UID：'.$user['user_id'].'）';
         $data['total_fee'] = sprintf("%.2f",$order['order_price']);
-        print_r($data);exit;
 
         //待请求参数数组
         $para = $this->buildRequestPara($data);
