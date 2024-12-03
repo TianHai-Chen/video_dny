@@ -17,6 +17,7 @@ class Shayu {
 
         if($res['code']==200 && !empty($res['data']['payUrl'])){
             echo "window.location.href = '{$res['data']['payUrl']}';";
+            die;
             // return $res;
         }
         return 'error';
