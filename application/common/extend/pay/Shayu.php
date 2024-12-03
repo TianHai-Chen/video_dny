@@ -13,10 +13,8 @@ class Shayu {
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
 
         $res = th_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
-        // $res = mac_xml2array($res);
-
-        var_dump($res);exit;
-        if($res['code']==500){
+        
+        if($res['code']==200){
 
             return $res;
         }
