@@ -448,6 +448,7 @@ function mac_page_param($record_total, $page_size, $page_current, $page_url,$pag
 // CurlPOST数据提交-----------------------------------------
 function mac_curl_post($url,$data,$heads=array(),$cookie='')
 {
+    $data = http_build_query($data); // 将数组转为字符串
     $ch = @curl_init();
     curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36');
     curl_setopt($ch, CURLOPT_URL, $url);

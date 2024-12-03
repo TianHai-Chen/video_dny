@@ -13,7 +13,7 @@ class Shayu {
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu']['appkey']);
         // print_r($data);exit;
 
-        $res = mac_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], mac_array2xml($data));
+        $res = mac_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
         // $res = mac_xml2array($res);
 
         var_dump($res);exit;
