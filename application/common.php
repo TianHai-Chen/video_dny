@@ -445,6 +445,32 @@ function mac_page_param($record_total, $page_size, $page_current, $page_url,$pag
     return $page_param;
 }
 
+//curlPost提交
+function th_curl_post($url, $data) {
+    // 初始化cURL会话
+    $ch = curl_init();
+
+    // 设置cURL选项
+    curl_setopt($ch, CURLOPT_URL, $url);  // 设置请求URL
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);  // 获取返回的结果而不是直接输出
+    curl_setopt($ch, CURLOPT_POST, true);  // 设置请求方法为POST
+    curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));  // POST请求的数据，可以是数组，cURL会将其转换为URL编码的查询字符串
+
+    // 执行cURL请求并获取响应
+    $response = curl_exec($ch);
+
+    // 检查是否发生了错误
+    if (curl_errno($ch)) {
+        return 'cURL错误: ' . curl_error($ch);
+    }
+    
+    // 关闭cURL会话
+    curl_close($ch);
+    // 输出响应内容
+    return $response;
+
+}
+
 // CurlPOST数据提交-----------------------------------------
 function mac_curl_post($url,$data,$heads=array(),$cookie='')
 {
