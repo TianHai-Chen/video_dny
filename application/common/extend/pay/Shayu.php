@@ -16,7 +16,7 @@ class Shayu {
         $res = json_decode($res,true);
 
         if($res['code']==200 && !empty($res['data']['payUrl'])){
-            echo "window.location.href = '{$res['data']['payUrl']}';";
+            echo "<script>window.location.href = '{$res['data']['payUrl']}';</script>";
             die;
             // return $res;
         }
