@@ -15,13 +15,13 @@ class Shayu {
         $res = th_curl_post($GLOBALS['config']['pay']['shayu']['apiurl'], $data);
         $res = json_decode($res,true);
 
-        print_r($res);exit;
         if($res['code']==200 && !empty($res['data']['payUrl'])){
             echo "window.location.href = '{$res['data']['payUrl']}';";
             die;
             // return $res;
         }
-        return 'error';
+        print_r($res);
+        die;
 
         // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";
         // while (list ($key, $val) = each ($data)) {
