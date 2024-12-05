@@ -173,9 +173,9 @@ return array(
         '67' => array("show"=>1,'name' => '仙豆日志', 'controller' => 'plog',		'action' => 'index'),
         '6701' => array("show"=>0,'name' => '--仙豆日志删除', 'controller' => 'plog',		'action' => 'del'),
 
-        // '69' => array("show"=>1,'name' => '金币日志', 'controller' => 'glog',		'action' => 'index'),
+        '69' => array("show"=>0,'name' => '金币日志', 'controller' => 'glog',		'action' => 'index'),
 
-        // '68' => array("show"=>1,'name' => '金币提现记录', 'controller' => 'cash',		'action' => 'index'),
+        '68' => array("show"=>0,'name' => '金币提现记录', 'controller' => 'cash',		'action' => 'index'),
         '68' => array("show"=>1,'name' => '仙豆提现记录', 'controller' => 'cash',		'action' => 'index'),
 
         '6801' => array("show"=>0,'name' => '--提现删除', 'controller' => 'cash',		'action' => 'del'),
