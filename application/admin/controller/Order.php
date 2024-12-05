@@ -66,9 +66,9 @@ class Order extends Base
     }
 
     public function export(){
+        return $this->success('导出成功');
         $res = model('Order')->listData([], 'order_id desc');
         export($res);
-        return $this->success('导出成功');
     }
 
 
