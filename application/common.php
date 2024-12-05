@@ -2107,7 +2107,6 @@ function export($result) {
     // 填充数据
     $row = 2; // 从第二行开始填充数据
     // 遍历查询结果
-    print_r($result);exit;
     foreach ($result['list'] as $item) {
         $objPHPExcel->setActiveSheetIndex(0)
                     ->setCellValue('A' . $row, $item['id'])
