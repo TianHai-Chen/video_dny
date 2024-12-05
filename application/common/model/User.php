@@ -712,9 +712,9 @@ class User extends Base
         if (empty($data['user_name']) || empty($data['user_pwd']) || empty($data['user_pwd2']) || empty($data['verify'])) {
             return ['code' => 1001, 'msg' => '参数错误'];
         }
-        if (!captcha_check($data['verify'])) {
-            return ['code' => 1002, 'msg' => '验证码错误'];
-        }
+        // if (!captcha_check($data['verify'])) {
+        //     return ['code' => 1002, 'msg' => '验证码错误'];
+        // }
 
         if ($data['user_pwd'] != $data['user_pwd2']) {
             return ['code' => 1003, 'msg' => '二次密码不一致'];
