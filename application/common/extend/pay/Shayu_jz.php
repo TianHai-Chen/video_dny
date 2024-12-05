@@ -13,6 +13,7 @@ class Shayu_jz {
         $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['Shayu_jz']['appkey']);
 
         $res = th_curl_post($GLOBALS['config']['pay']['Shayu_jz']['apiurl'], $data);
+        var_dump($res);exit;
         $res = json_decode($res,true);
 
         if($res['code']==200 && !empty($res['data']['payUrl'])){
