@@ -2077,3 +2077,56 @@ function getUserVideoTimes($userId){
 function getLevelName($group_id) {
     return model('Group')->where('group_id', $group_id)->value('group_name');
 }
+
+/**
+ * excel导出
+ */
+function export($result) {
+    // 引入 PHPExcel 库
+    require_once EXTEND_PATH . 'PHPExcel-1.8.2/Classes/PHPExcel.php';// 或者引入相对路径下的 PHPExcel.php
+
+    // 创建 PHPExcel 对象
+    $objPHPExcel = new PHPExcel();
+
+    // 设置文档的属性
+    $objPHPExcel->getProperties()->setCreator("My Application")
+                                ->setTitle("My Data Export")
+                                ->setDescription("Exported MySQL Data");
+
+    // 设置表头
+    $objPHPExcel->setActiveSheetIndex(0)
+                ->setCellValue('A1', 'ID')
+                ->setCellValue('B1', 'Name')
+                ->setCellValue('C1', 'Age');
+
+    // 填充数据
+    $row = 2; // 从第二行开始填充数据
+    // 遍历查询结果
+    foreach ($result as $item) {
+        $objPHPExcel->setActiveSheetIndex(0)
+                    ->setCellValue('A' . $row, $item['id'])
+                    ->setCellValue('B' . $row, $item['name'])
+                    ->setCellValue('C' . $row, $item['age']);
+        $row++;
+    }
+
+    // 设置列宽
+    $objPHPExcel->getActiveSheet()->getColumnDimension('A')->setAutoSize(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('B')->setAutoSize(true);
+    $objPHPExcel->getActiveSheet()->getColumnDimension('C')->setAutoSize(true);
+
+    // 设置活动sheet
+    $objPHPExcel->setActiveSheetIndex(0);
+
+    // 设置输出文件名
+    $fileName = 'mysql_export_' . date('YmdHis') . '.xls';
+
+    // 设置头信息，告诉浏览器输出 Excel 文件
+    header('Content-Type: application/vnd.ms-excel');
+    header('Content-Disposition: attachment;filename="' . $fileName . '"');
+    header('Cache-Control: max-age=0');
+
+    // 创建 Excel 文件并输出
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5'); // 生成 Excel5（xls 格式）
+    $objWriter->save('php://output');
+}
