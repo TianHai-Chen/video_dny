@@ -2095,19 +2095,29 @@ function export($result) {
 
     // 设置表头
     $objPHPExcel->setActiveSheetIndex(0)
-                ->setCellValue('A1', 'ID')
-                ->setCellValue('B1', 'Name')
-                ->setCellValue('C1', 'Age');
+                ->setCellValue('A1', '编号')
+                ->setCellValue('B1', '单号')
+                ->setCellValue('C1', '订单金额')
+                ->setCellValue('D1', '订单状态')
+                ->setCellValue('E1', '下单时间')
+                ->setCellValue('F1', '支付类型')
+                ->setCellValue('G1', '支付时间')
+                ->setCellValue('H1', '用户(id,用户名)');
 
     // 填充数据
     $row = 2; // 从第二行开始填充数据
     // 遍历查询结果
     print_r($result);exit;
-    foreach ($result as $item) {
+    foreach ($result['list'] as $item) {
         $objPHPExcel->setActiveSheetIndex(0)
                     ->setCellValue('A' . $row, $item['id'])
-                    ->setCellValue('B' . $row, $item['name'])
-                    ->setCellValue('C' . $row, $item['age']);
+                    ->setCellValue('B' . $row, $item['order_code'])
+                    ->setCellValue('C' . $row, $item['order_price'])
+                    ->setCellValue('D' . $row, mac_get_order_status_text($item['order_status']))
+                    ->setCellValue('E' . $row, mac_day($item['order_time']))
+                    ->setCellValue('F' . $row, $item['order_type'])
+                    ->setCellValue('G' . $row, mac_day($item['order_pay_time']))
+                    ->setCellValue('H' . $row, $item['user_id'].','.$item['user_name']);
         $row++;
     }
 
