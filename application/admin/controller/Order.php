@@ -66,7 +66,7 @@ class Order extends Base
     }
 
     public function export(){
-        require_once 'PHPExcel.php'; // 或者引入相对路径下的 PHPExcel.php
+        require_once '../../extend/PHPExcel-1.8.2/Classes/PHPExcel.php'; // 或者引入相对路径下的 PHPExcel.php
 
         if (class_exists('PHPExcel')) {
             echo 'PHPExcel 已经安装';
