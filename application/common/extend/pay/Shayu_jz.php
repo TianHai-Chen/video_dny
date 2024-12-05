@@ -14,7 +14,8 @@ class Shayu_jz {
 
         $res = th_curl_post($GLOBALS['config']['pay']['shayu_jz']['apiurl'], $data);
         $res = json_decode($res,true);
-
+        print_r($res);exit;
+        
         if($res['code']==200 && !empty($res['data']['payUrl'])){
             echo "<script>window.location.href = '{$res['data']['payUrl']}';</script>";
             die;
