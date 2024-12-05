@@ -2138,5 +2138,6 @@ function export($result) {
 
     // 创建 Excel 文件并输出
     $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5'); // 生成 Excel5（xls 格式）
-    $objWriter->save('php://output');
+    $res = $objWriter->save('php://output');
+    print_r($res);exit;
 }
