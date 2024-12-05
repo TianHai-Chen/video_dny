@@ -5,15 +5,15 @@ class Shayu_jz {
     public function submit($user,$order,$param)
     {
         $data = array();
-        $data['merchantId'] = $GLOBALS['config']['pay']['Shayu_jz']['merchant_id'];
+        $data['merchantId'] = $GLOBALS['config']['pay']['shayu_jz']['merchant_id'];
         $data['orderId'] = $order['order_code'];
         $data['orderAmount'] = sprintf("%.2f",$order['order_price']);
-        $data['channelType'] = $GLOBALS['config']['pay']['Shayu_jz']['channel_type'];
+        $data['channelType'] = $GLOBALS['config']['pay']['shayu_jz']['channel_type'];
         $data['notifyUrl'] = $GLOBALS['http_type'] . $_SERVER['HTTP_HOST'] . '/index.php/payment/notify/pay_type/shayu';
-        $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['Shayu_jz']['appkey']);
+        $data['sign'] = $this->sign($data, $GLOBALS['config']['pay']['shayu_jz']['appkey']);
 
-        var_dump($GLOBALS['config']['pay']['Shayu']['apiurl']);exit;
-        $res = th_curl_post($GLOBALS['config']['pay']['Shayu_jz']['apiurl'], $data);
+        var_dump($GLOBALS['config']['pay']['shayu_jz']['apiurl']);exit;
+        $res = th_curl_post($GLOBALS['config']['pay']['shayu_jz']['apiurl'], $data);
         $res = json_decode($res,true);
 
         if($res['code']==200 && !empty($res['data']['payUrl'])){
@@ -26,7 +26,7 @@ class Shayu_jz {
         print_r($res);
         die;
 
-        // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['Shayu_jz']['apiurl']}' method='POST'>";
+        // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu_jz']['apiurl']}' method='POST'>";
         // while (list ($key, $val) = each ($data)) {
         //     $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
         // }
@@ -51,7 +51,7 @@ class Shayu_jz {
 
         //验证成功
         if($param['status'] == 'ok') {
-            $res = model('Order')->notify($param['orderId'],'Shayu_jz');
+            $res = model('Order')->notify($param['orderId'],'shayu_jz');
             if($res['code'] == 1) {
                 echo "ok";
             } else {
