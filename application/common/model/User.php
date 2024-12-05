@@ -704,7 +704,7 @@ class User extends Base
         $data['user_answer'] = htmlspecialchars(urldecode(trim($param['user_answer'])));
         $data['user_pwd'] = htmlspecialchars(urldecode(trim($param['user_pwd'])));
         $data['user_pwd2'] = htmlspecialchars(urldecode(trim($param['user_pwd2'])));
-        $data['verify'] = $param['verify'];
+        $data['verify'] = $param['verify'] ?? 1;
 
         // if (empty($data['user_name']) || empty($data['user_question']) || empty($data['user_answer']) || empty($data['user_pwd']) || empty($data['user_pwd2']) || empty($data['verify'])) {
         //     return ['code' => 1001, 'msg' => '参数错误'];
