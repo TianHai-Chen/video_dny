@@ -20,7 +20,8 @@ class Shayu {
             die;
             // return $res;
         }
-        print_r($res);
+        if(isset($res['msg'])) echo $res['msg'];
+        else print_r($res);
         die;
 
         // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu']['apiurl']}' method='POST'>";

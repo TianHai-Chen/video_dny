@@ -22,18 +22,9 @@ class Shayu_jz {
         } else {
             echo '跳转失败';
         }
-        print_r($res);
+        if(isset($res['msg'])) echo $res['msg'];
+        else print_r($res);
         die;
-
-        // $sHtml = "<form id='shayusubmit' name='shayusubmit' action='{$GLOBALS['config']['pay']['shayu_jz']['apiurl']}' method='POST'>";
-        // while (list ($key, $val) = each ($data)) {
-        //     $sHtml.= "<input type='hidden' name='".$key."' value='".$val."'/>";
-        // }
-        // //submit按钮控件请不要含有name属性
-        // $sHtml = $sHtml."<input type='submit' value='正在提交'></form>";
-        // $sHtml = $sHtml."<script>document.forms['shayusubmit'].submit();</script>";
-        // echo $sHtml;
-        // die;
     }
 
     public function sign($data, $signkey){
