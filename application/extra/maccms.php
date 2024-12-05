@@ -244,7 +244,17 @@ return array (
       'appkey' => '3f7295765d7c087bf6ba330d0b56e232',
       'apiurl' => 'http://baiyuan.skyblue98.com/api/newOrder',
       'type' => '2',
-      'name' => '鲨鱼支付',
+      'name' => '鲨鱼支付(百源支付)',
+    ),
+    'shayu_jz' => 
+    array (
+      'appid' => '1000',
+      'merchant_id' => '10021',
+      'channel_type' => '334',
+      'appkey' => '8dd3518315aea9b3f2bbf7baa09a249f',
+      'apiurl' => 'http://jiuzhou.1688888.vip/api/newOrder',
+      'type' => '2',
+      'name' => '鲨鱼支付(九州支付)',
     ),
     'alipay' => 
     array (
