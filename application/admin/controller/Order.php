@@ -65,6 +65,15 @@ class Order extends Base
         return $this->error('参数错误');
     }
 
+    public function export(){
+        require_once 'PHPExcel.php'; // 或者引入相对路径下的 PHPExcel.php
+
+        if (class_exists('PHPExcel')) {
+            echo 'PHPExcel 已经安装';
+        } else {
+            echo 'PHPExcel 没有安装';
+        }
+    }
 
 
 }
