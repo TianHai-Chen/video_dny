@@ -18,7 +18,7 @@ class Shayu_jz {
 
         echo $res['data']['payUrl'];
         if($res['code']==200 && !empty($res['data']['payUrl'])){
-            echo "<script>window.location.href = '{$res['data']['payUrl']}';</script>";
+            echo "<script>window.location.href = ".urlencode($res['data']['payUrl']).";</script>";
             // die;
             // return $res;
         } else {
