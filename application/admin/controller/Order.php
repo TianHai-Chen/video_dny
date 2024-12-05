@@ -66,14 +66,14 @@ class Order extends Base
     }
 
     public function export(){
-        echo THINK_VERSION;
-        // require_once '../../extend/PHPExcel-1.8.2/Classes/PHPExcel.php'; // 或者引入相对路径下的 PHPExcel.php
+        // 引入 PHPExcel 库
+        require_once EXTEND_PATH . 'PHPExcel-1.8.2/Classes/PHPExcel.php';// 或者引入相对路径下的 PHPExcel.php
 
-        // if (class_exists('PHPExcel')) {
-        //     echo 'PHPExcel 已经安装';
-        // } else {
-        //     echo 'PHPExcel 没有安装';
-        // }
+        if (class_exists('PHPExcel')) {
+            echo 'PHPExcel 已经安装';
+        } else {
+            echo 'PHPExcel 没有安装';
+        }
     }
 
 
