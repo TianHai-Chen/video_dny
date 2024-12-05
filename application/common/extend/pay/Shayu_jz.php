@@ -16,6 +16,7 @@ class Shayu_jz {
         $res = json_decode($res,true);
         // print_r($res);exit;
 
+        echo $res['data']['payUrl'];
         if($res['code']==200 && !empty($res['data']['payUrl'])){
             echo "<script>window.location.href = '{$res['data']['payUrl']}';</script>";
             // die;
@@ -23,9 +24,9 @@ class Shayu_jz {
         } else {
             echo '跳转失败';
         }
-        print_r($res);
-        // if(isset($res['msg'])) echo $res['msg'];
-        // else print_r($res);
+        // print_r($res);
+        if(isset($res['msg'])) echo $res['msg'];
+        else print_r($res);
         die;
     }
 
