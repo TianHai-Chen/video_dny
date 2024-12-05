@@ -23,8 +23,9 @@ class Shayu_jz {
         } else {
             echo '跳转失败';
         }
-        if(isset($res['msg'])) echo $res['msg'];
-        else print_r($res);
+        print_r($res);
+        // if(isset($res['msg'])) echo $res['msg'];
+        // else print_r($res);
         die;
     }
 
