@@ -19,6 +19,8 @@ class Shayu_jz {
             echo "<script>window.location.href = '{$res['data']['payUrl']}';</script>";
             die;
             // return $res;
+        } else {
+            echo '跳转失败';
         }
         print_r($res);
         die;
