@@ -2129,7 +2129,7 @@ function export($result) {
     $objPHPExcel->setActiveSheetIndex(0);
 
     // 设置输出文件名
-    $fileName = 'mysql_export_' . date('YmdHis') . '.xls';
+    $fileName = '订单明细' . date('YmdHis') . '.xls';
 
     // 设置头信息，告诉浏览器输出 Excel 文件
     header('Content-Type: application/vnd.ms-excel');
