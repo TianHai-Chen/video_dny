@@ -22,8 +22,8 @@
             <a data-href="{:url('del')}" class="layui-btn layui-btn-primary j-page-btns confirm"><i class="layui-icon">&#xe640;</i>删除</a>
             <a data-href="{:url('del')}?ids=1&all=1" class="layui-btn layui-btn-primary j-ajax" confirm="确认清空数据吗？操作不可恢复"><i class="layui-icon">&#xe640;</i>清空</a>
             <!-- <a data-href="{:url('export')}" class="layui-btn layui-btn-primary j-ajax" confirm="确认导出数据吗？"><i class="layui-icon">&#xe642;</i>导出Excel</a> -->
-            <a data-href="{:url('export')}" class="layui-btn layui-btn-primary" confirm="确认导出数据吗？">
-                <i class="layui-icon">&#xe642;</i>导出Excel
+            <a href="javascript:void(0);" data-href="{:url('export')}" class="layui-btn layui-btn-primary" id="exportBtn">
+                <i class="layui-icon">&#xe642;</i> 导出Excel
             </a>
         </div>
 
@@ -90,6 +90,18 @@
                     location.href = curUrl.replace('%7Bpage%7D',obj.curr).replace('%7Blimit%7D',obj.limit);
                 }
             }
+        });
+    });
+
+    // 绑定点击事件
+    $('#exportBtn').click(function() {
+        var url = $(this).data('href');  // 获取数据属性中的 URL
+
+        // 弹出确认框
+        layer.confirm('确认导出数据吗？', {icon: 3, title: '提示'}, function(index) {
+            // 点击确认按钮，跳转到导出接口
+            window.location.href = url;  // 直接跳转到导出接口
+            layer.close(index);  // 关闭确认框
         });
     });
 </script>
